@@ -8,7 +8,10 @@ interface Props {
 
 export const Section = ({ className, children }: Props) => (
   <section
-    className={twMerge("max-w-[1440px] w-[calc(100%-40px)] mx-auto", className)}
+    className={twMerge(
+      "max-w-[1440px] w-[calc(100%-40px)] mx-auto h-dvh",
+      className
+    )}
   >
     {children}
   </section>

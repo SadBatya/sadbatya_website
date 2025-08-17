@@ -9,3 +9,14 @@ export const WORDS: (string | number)[] = [
   2000,
   "Проекты",
 ];
+
+export const socials = [
+  {
+    icon: "/socials-icons/github.svg",
+    link: "https://github.com/SadBatya",
+  },
+  {
+    icon: "/socials-icons/telegram.svg",
+    link: "https://t.me/SadBatya",
+  },
+];
