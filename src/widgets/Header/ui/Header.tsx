@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/shared";
 
 export const Header = () => (
   <header className="border-b border-[#2A2A2A] bg-[#121212] shadow-md shadow-blue-500/10 fixed top-0 w-full z-50">
@@ -14,7 +15,7 @@ export const Header = () => (
               (item) => (
                 <li key={item}>
                   <Link
-                    className="text-[#EAEAEA] opacity-80 rounded-md px-3 py-2 hover:bg-[#1E1E1E] hover:text-white transition-all hover:opacity-100"
+                    className="text-[#EAEAEA] opacity-50 rounded-md font-medium px-3 py-2 hover:text-white transition-all hover:opacity-100"
                     href={item}
                   >
                     {item}
@@ -26,9 +27,7 @@ export const Header = () => (
         </nav>
       </div>
 
-      <button className="px-3 py-1 rounded-md border border-white/30 cursor-pointer hover:border-white transition-all">
-        Связаться
-      </button>
+      <Button>Связаться</Button>
     </div>
   </header>
 );
