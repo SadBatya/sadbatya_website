@@ -10,7 +10,9 @@ interface Props {
 export const Title = ({ children, className, tag = "h1" }: Props) => {
   if (tag === "h1") {
     return (
-      <h1 className={twMerge("lg:text-[48px] text-[38px]", className)}>
+      <h1
+        className={twMerge("lg:text-[48px] text-[38px] text-center", className)}
+      >
         {children}
       </h1>
     );
@@ -18,7 +20,9 @@ export const Title = ({ children, className, tag = "h1" }: Props) => {
 
   if (tag === "h2") {
     return (
-      <h2 className={twMerge("lg:text-[40px] text-[30px]", className)}>
+      <h2
+        className={twMerge("lg:text-[40px] text-[30px] text-center", className)}
+      >
         {children}
       </h2>
     );
@@ -26,7 +30,9 @@ export const Title = ({ children, className, tag = "h1" }: Props) => {
 
   if (tag === "h3") {
     return (
-      <h3 className={twMerge("lg:text-[30px] text-[20px]", className)}>
+      <h3
+        className={twMerge("lg:text-[30px] text-[20px] text-center", className)}
+      >
         {children}
       </h3>
     );

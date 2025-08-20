@@ -4,11 +4,17 @@ import { twMerge } from "tailwind-merge";
 interface Props {
   children: ReactNode;
   className?: string;
+  disabled?: boolean;
 }
 
-export const Button = ({ children, className }: Props) => (
-  <button className={twMerge("relative group", className)}>
-    <span className="px-3 py-1 relative font-medium rounded-md border border-white/30 hover:border-white/80 bg-black cursor-pointer transition-all duration-500">
+export const Button = ({ children, className, disabled }: Props) => (
+  <button disabled={disabled} className="relative group w-fit">
+    <span
+      className={twMerge(
+        "px-3 py-1 relative font-medium rounded-md border border-white/30 hover:border-white/80 bg-black cursor-pointer transition-all duration-500",
+        className
+      )}
+    >
       {children}
     </span>
     <span
