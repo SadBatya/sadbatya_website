@@ -25,15 +25,7 @@ export const SectionForm = () => {
       try {
         console.log(JSON.stringify({ name, telegram, message }));
 
-        await axios.post(
-          `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_BOT_TOKEN}/sendMessage`,
-          {
-            chat_id: process.env.NEXT_PUBLIC_CHAT_ID,
-            text: `Имя: ${name}\nТелеграм: ${telegram}\nСообщение: ${
-              message ?? "-"
-            }`,
-          }
-        );
+        await axios.post("/api/send", { name, telegram, message });
 
         return {
           message: { name, telegram, message },
