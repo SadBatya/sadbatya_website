@@ -7,9 +7,9 @@ export async function POST(req: NextRequest) {
     console.log(name, telegram, message, "request");
 
     const res = await axios.post(
-      `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_BOT_TOKEN}/sendMessage`,
+      `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,
       {
-        chat_id: process.env.NEXT_PUBLIC_CHAT_ID,
+        chat_id: process.env.CHAT_ID,
         text: `Имя: ${name}\nТелеграм: ${telegram}\nСообщение: ${
           message ?? "-"
         }`,
