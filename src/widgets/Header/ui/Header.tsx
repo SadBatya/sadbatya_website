@@ -1,12 +1,15 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, BurgerButton } from "@/shared";
+import { Button, BurgerButton } from "@/shared/ui";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { useBodyScrollLock } from "@/shared/hooks";
 
 export const Header = () => {
   const [isMenuOpen, setIsOpenMenu] = useState(false);
+
+  useBodyScrollLock(isMenuOpen);
 
   return (
     <header className="border-b border-[#2A2A2A] bg-[#121212] shadow-md shadow-blue-500/10 fixed top-0 w-full z-50">

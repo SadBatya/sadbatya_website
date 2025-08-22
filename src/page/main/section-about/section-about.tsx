@@ -1,4 +1,4 @@
-import { Section, Title } from "@/shared";
+import { Section, Title } from "@/shared/ui";
 import Image from "next/image";
 import { icons } from "./model/icons";
 

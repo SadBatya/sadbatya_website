@@ -1,6 +1,6 @@
 "use client";
 
-import { Section, Title, Textarea, Input, Button } from "@/shared";
+import { Section, Title, Textarea, Input, Button } from "@/shared/ui";
 import { useActionState } from "react";
 import axios from "axios";
 

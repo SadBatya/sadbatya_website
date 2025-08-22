@@ -1,4 +1,4 @@
-import { Section, TypedText } from "@/shared";
+import { Section, TypedText } from "@/shared/ui";
 import { WORDS, socials } from "../model/data";
 import Link from "next/link";
 import Image from "next/image";
