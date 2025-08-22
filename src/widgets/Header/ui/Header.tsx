@@ -5,6 +5,7 @@ import { Button, BurgerButton } from "@/shared/ui";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useBodyScrollLock } from "@/shared/hooks";
+import { navigation } from "../model/data";
 
 export const Header = () => {
   const [isMenuOpen, setIsOpenMenu] = useState(false);
@@ -20,22 +21,19 @@ export const Header = () => {
           </Link>
           <nav className="hidden lg:flex">
             <ul className="flex items-center gap-8">
-              {["Обо мне", "Портфолио", "Посты", "Контакты", "Менторинг"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      className="text-[#EAEAEA] opacity-50 rounded-md font-medium px-3 py-2 hover:text-white transition-all hover:opacity-100"
-                      href={item}
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
+              {navigation.map(({ text, link }, index) => (
+                <li key={index}>
+                  <Link
+                    className="text-[#EAEAEA] opacity-50 rounded-md font-medium px-3 py-2 hover:text-white transition-all hover:opacity-100"
+                    href={link}
+                  >
+                    {text}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
-
         <Button className="hidden lg:block">Связаться</Button>
         <BurgerButton
           isOpen={isMenuOpen}
@@ -50,18 +48,16 @@ export const Header = () => {
         )}
       >
         <ul className="flex flex-col gap-4">
-          {["Обо мне", "Портфолио", "Посты", "Контакты", "Менторинг"].map(
-            (item) => (
-              <li onClick={() => setIsOpenMenu(false)} key={item}>
-                <Link
-                  className="rounded-md font-medium px-3 py-2 text-white transition-all opacity-100"
-                  href={item}
-                >
-                  {item}
-                </Link>
-              </li>
-            )
-          )}
+          {navigation.map(({ text, link }, index) => (
+            <li onClick={() => setIsOpenMenu(false)} key={index}>
+              <Link
+                className="rounded-md font-medium px-3 py-2 text-white transition-all opacity-100"
+                href={link}
+              >
+                {text}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </header>

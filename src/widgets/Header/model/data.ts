@@ -1,22 +1,24 @@
+import { internalPath } from "@/shared/routes";
+
 export const navigation = [
   {
     text: "Обо мне",
-    link: "#about",
+    link: internalPath.about,
   },
   {
-    text: "Портфолио",
-    link: "#portfolio",
+    text: "Проекты",
+    link: internalPath.projects,
   },
   {
     text: "Посты",
-    link: "#posts",
+    link: internalPath.posts,
   },
   {
     text: "Контакты",
-    link: "#contacts",
+    link: internalPath.contacts,
   },
   {
     text: "Менторинг",
-    link: "#mentoring",
+    link: internalPath.mentoring,
   },
 ];
