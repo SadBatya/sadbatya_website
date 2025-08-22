@@ -1,6 +1,6 @@
 export const icons = [
-  "/stack-icons/css3-plain.svg",
   "/stack-icons/html5-original-wordmark.svg",
+  "/stack-icons/css3-plain.svg",
   "/stack-icons/javascript-plain.svg",
   "/stack-icons/nextjs-original.svg",
   "/stack-icons/prisma-original.svg",
@@ -9,4 +9,6 @@ export const icons = [
   "/stack-icons/typescript-plain.svg",
   "/stack-icons/vercel-original.svg",
   "/stack-icons/framermotion-original.svg",
+  "/stack-icons/docker.svg",
+  "/stack-icons/strapi.svg",
 ];

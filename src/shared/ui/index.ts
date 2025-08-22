@@ -5,3 +5,4 @@ export { Button } from "./Button/Button";
 export { Input } from "./Input/Input";
 export { Textarea } from "./Textarea/Textarea";
 export { BurgerButton } from "./BurgerButton/BurgerButton";
+export { StackIcons } from "./StackIcons/ui/StackIcons";

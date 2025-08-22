@@ -47,8 +47,6 @@ export const SectionForm = () => {
     }
   );
 
-  console.log(state, "state");
-
   return (
     <Section>
       <Title tag="h2" className="mb-16 lg:mb-20">

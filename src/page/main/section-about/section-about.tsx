@@ -1,14 +1,12 @@
-import { Section, Title } from "@/shared/ui";
-import Image from "next/image";
-import { icons } from "./model/icons";
+import { Section, Title, Button, StackIcons } from "@/shared/ui";
 
 export const SectionAbout = () => (
-  <Section>
+  <Section className="flex flex-col max-w-[1440px] items-center">
     <Title tag="h2" className="text-center font-semibold mb-12 lg:mb-24">
       Обо мне
     </Title>
-    <div className="flex justify-between gap-12 items-center">
-      <ul className="flex flex-col gap-4 text-lg">
+    <div className="flex w-full flex-col lg:flex-row justify-between mb-16 gap-12 items-center">
+      <ul className="flex flex-col gap-4 text-lg max-w-[1200px]">
         <li className="flex items-start gap-3">
           <span className="text-emerald-500">✓</span>
           <span>
@@ -16,7 +14,6 @@ export const SectionAbout = () => (
             React/Next.js
           </span>
         </li>
-
         <li className="flex items-start gap-3">
           <span className="text-emerald-500">✓</span>
           <span>
@@ -24,7 +21,6 @@ export const SectionAbout = () => (
             пользователей) и быстрая адаптация в стартапах
           </span>
         </li>
-
         <li className="flex items-start gap-3">
           <span className="text-emerald-500">✓</span>
           <span>
@@ -41,11 +37,8 @@ export const SectionAbout = () => (
           </span>
         </li>
       </ul>
-      <div className="flex gap-4 flex-wrap">
-        {icons.map((icon) => (
-          <Image key={icon} src={icon} alt="" width={50} height={50} />
-        ))}
-      </div>
+      <StackIcons />
     </div>
+    <Button className="px-4 py-2.5">Подробнее</Button>
   </Section>
 );
