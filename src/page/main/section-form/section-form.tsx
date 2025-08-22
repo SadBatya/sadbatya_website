@@ -23,8 +23,6 @@ export const SectionForm = () => {
         (formData.get("message") ?? "").toString().trim() || undefined;
 
       try {
-        console.log(JSON.stringify({ name, telegram, message }));
-
         await axios.post("/api/send", { name, telegram, message });
 
         return {
