@@ -1,8 +1,11 @@
 "use client";
 
 import { Section, Title, Textarea, Input, Button } from "@/shared/ui";
+import { useCookies } from "@/shared/hooks";
 import { useActionState } from "react";
 import axios from "axios";
+import Image from "next/image";
+import { externalPath } from "@/shared/routes";
 
 interface IFormData {
   message: {
@@ -15,6 +18,11 @@ interface IFormData {
 }
 
 export const SectionForm = () => {
+  const { value: formStateCookie, setCookie: setFormStateCookie } = useCookies(
+    "main-form",
+    ""
+  );
+
   const [state, submitAction, isPending] = useActionState<IFormData, FormData>(
     async (_prev, formData) => {
       const name = (formData.get("name") ?? "").toString().trim();
@@ -24,7 +32,9 @@ export const SectionForm = () => {
 
       try {
         await axios.post("/api/send", { name, telegram, message });
-
+        if (state.success) {
+          setFormStateCookie("true", 1);
+        }
         return {
           message: { name, telegram, message },
           errors: [],
@@ -47,14 +57,30 @@ export const SectionForm = () => {
     }
   );
 
+  if (state.success || formStateCookie === "true") {
+    return (
+      <Section className="flex flex-col gap-8 items-center justify-center">
+        <span className="text-white text-center font-semibold uppercase text-2xl">
+          Данные успешно отправлены
+        </span>
+        <Image src="/gifs/raccoon.gif" alt="raccoon" width={300} height={300} />
+        <Button
+          href={externalPath.telegramChannel}
+          target="_blank"
+          className="px-8 py-2 text-lg"
+        >
+          Перейти в телеграм
+        </Button>
+      </Section>
+    );
+  }
+
   return (
     <Section>
       <Title tag="h2" className="mb-16 lg:mb-20">
         Связаться со мной
       </Title>
-      {state.success && (
-        <span className="text-white text-2xl">Данные успешно отправлены</span>
-      )}
+
       <form
         action={submitAction}
         className="max-w-[680px] items-center mx-auto flex flex-col gap-8"

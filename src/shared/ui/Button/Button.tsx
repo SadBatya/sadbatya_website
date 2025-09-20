@@ -1,14 +1,45 @@
 import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import Link from "next/link";
 
 interface Props {
   children: ReactNode;
   className?: string;
   disabled?: boolean;
+  href?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
+  onClick?: () => void;
 }
 
-export const Button = ({ children, className, disabled }: Props) => (
-  <button disabled={disabled} className="relative group w-fit">
+export const Button = ({
+  children,
+  className,
+  disabled,
+  href,
+  target = "_self",
+  onClick,
+}: Props) => {
+  if (href) {
+    return (
+      <Link href={href} target={target} className="relative group w-fit">
+        <Content className={className}>{children}</Content>
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className="relative group w-fit"
+    >
+      <Content className={className}>{children}</Content>
+    </button>
+  );
+};
+
+const Content = ({ children, className }: Props) => (
+  <>
     <span
       className={twMerge(
         "px-3 py-1 relative font-medium rounded-md border border-white/30 hover:border-white/80 bg-black cursor-pointer transition-all duration-500",
@@ -24,5 +55,5 @@ export const Button = ({ children, className, disabled }: Props) => (
         "bg-linear-to-r/longer from-indigo-500 to-teal-400 blur-lg bg-[length:400%]"
       )}
     />
-  </button>
+  </>
 );

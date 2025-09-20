@@ -9,5 +9,6 @@ export const internalPath = {
 
 export const externalPath = {
   telegram: "https://t.me/SadBatya",
+  telegramChannel: "https://t.me/sadbatyainit",
   github: "https://github.com/SadBatya",
 };

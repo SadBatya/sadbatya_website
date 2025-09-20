@@ -7,7 +7,6 @@ import { twMerge } from "tailwind-merge";
 
 export const StackIcons = () => {
   const [activeIcon, setActiveIcon] = useState(0);
-  console.log(activeIcon);
 
   useEffect(() => {
     const timer = setInterval(() => {
