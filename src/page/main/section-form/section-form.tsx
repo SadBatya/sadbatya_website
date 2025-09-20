@@ -59,7 +59,10 @@ export const SectionForm = () => {
 
   if (state.success || formStateCookie === "true") {
     return (
-      <Section className="flex flex-col gap-8 items-center justify-center">
+      <Section
+        height="full"
+        className="flex flex-col gap-8 items-center justify-center"
+      >
         <span className="text-white text-center font-semibold uppercase text-2xl">
           Данные успешно отправлены
         </span>
@@ -82,7 +85,7 @@ export const SectionForm = () => {
   }
 
   return (
-    <Section>
+    <Section height="full">
       <Title tag="h2" className="mb-16 lg:mb-20">
         Связаться со мной
       </Title>

@@ -1,7 +1,7 @@
 import { Section, Title, Button, StackIcons } from "@/shared/ui";
 
 export const SectionAbout = () => (
-  <Section className="flex flex-col max-w-[1440px] items-center">
+  <Section height="full" className="flex flex-col max-w-[1440px] items-center">
     <Title tag="h2" className="text-center font-semibold mb-12 lg:mb-24">
       Обо мне
     </Title>
