@@ -32,9 +32,9 @@ export const SectionForm = () => {
 
       try {
         await axios.post("/api/send", { name, telegram, message });
-        if (state.success) {
-          setFormStateCookie("true", 1);
-        }
+
+        setFormStateCookie("true", 1);
+
         return {
           message: { name, telegram, message },
           errors: [],
@@ -67,8 +67,14 @@ export const SectionForm = () => {
         <Button
           href={externalPath.telegramChannel}
           target="_blank"
-          className="px-8 py-2 text-lg"
+          className="px-4 py-2 text-lg flex items-center gap-2"
         >
+          <Image
+            src="/socials-icons/telegram.svg"
+            alt="telegram"
+            width={24}
+            height={24}
+          />
           Перейти в телеграм
         </Button>
       </Section>
