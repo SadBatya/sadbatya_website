@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, BurgerButton } from "@/shared/ui";
+import { Button, BurgerButton, Badge } from "@/shared/ui";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useBodyScrollLock } from "@/shared/hooks";
@@ -17,17 +17,18 @@ export const Header = () => {
       <div className="max-w-[1440px] w-[calc(100%-40px)] mx-auto flex items-center py-8 justify-between">
         <div className="flex items-center gap-16">
           <Link href="/">
-            <Image src="/logo.png" alt="Логотип" width={130} height={100} />
+            <Image src="/logo.png" alt="Логотип" width={130} height={25} />
           </Link>
           <nav className="hidden lg:flex">
             <ul className="flex items-center gap-8">
-              {navigation.map(({ text, link }, index) => (
+              {navigation.map(({ text, link, soon }, index) => (
                 <li key={index}>
                   <Link
-                    className="text-[#EAEAEA] opacity-50 rounded-md font-medium px-3 py-2 hover:text-white transition-all hover:opacity-100"
+                    className="text-[#EAEAEA] flex items-center gap-2 opacity-50 rounded-md font-medium px-3 py-2 hover:text-white transition-all hover:opacity-100"
                     href={link}
                   >
                     {text}
+                    {soon === true && <Badge text="Soon" />}
                   </Link>
                 </li>
               ))}
@@ -48,13 +49,14 @@ export const Header = () => {
         )}
       >
         <ul className="flex flex-col gap-4">
-          {navigation.map(({ text, link }, index) => (
+          {navigation.map(({ text, soon, link }, index) => (
             <li onClick={() => setIsOpenMenu(false)} key={index}>
               <Link
-                className="rounded-md font-medium px-3 py-2 text-white transition-all opacity-100"
+                className="rounded-md font-medium flex items-center gap-2 px-3 py-2 text-white transition-all opacity-100"
                 href={link}
               >
                 {text}
+                {soon === true && <Badge text="Soon" />}
               </Link>
             </li>
           ))}
