@@ -61,6 +61,7 @@ export const SectionForm = () => {
     return (
       <Section
         height="full"
+        id="form"
         className="flex flex-col gap-8 items-center justify-center"
       >
         <span className="text-white text-center font-semibold uppercase text-2xl">
@@ -85,7 +86,7 @@ export const SectionForm = () => {
   }
 
   return (
-    <Section height="full">
+    <Section height="full" id="form">
       <Title tag="h2" className="mb-16 lg:mb-20">
         Связаться со мной
       </Title>

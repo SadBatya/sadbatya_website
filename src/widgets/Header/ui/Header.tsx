@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button, BurgerButton, Badge } from "@/shared/ui";
@@ -6,6 +7,7 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useBodyScrollLock } from "@/shared/hooks";
 import { navigation } from "../model/data";
+import { internalPath } from "@/shared/routes";
 
 export const Header = () => {
   const [isMenuOpen, setIsOpenMenu] = useState(false);
@@ -35,7 +37,9 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
-        <Button className="hidden lg:block">Связаться</Button>
+        <Button href={internalPath.home + "#form"} className="hidden lg:block">
+          Связаться
+        </Button>
         <BurgerButton
           isOpen={isMenuOpen}
           onClick={() => setIsOpenMenu(!isMenuOpen)}
