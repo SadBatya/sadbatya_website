@@ -12,7 +12,7 @@ export const SectionProjects = () => (
     </Subtitle>
     <div className="flex flex-wrap justify-center items-center gap-4">
       {Projects.map((project, index) => (
-        <ProjectCard key={index} {...project} />
+        <ProjectCard key={index} {...project} index={index} />
       ))}
     </div>
   </Section>

@@ -2,6 +2,7 @@ export const internalPath = {
   home: "/",
   about: "/about",
   projects: "/projects",
+  project: "/projects/:slug",
   posts: "/posts",
   contacts: "/contacts",
   mentoring: "/mentoring",

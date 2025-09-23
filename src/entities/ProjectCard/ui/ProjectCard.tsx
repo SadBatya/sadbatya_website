@@ -1,13 +1,14 @@
 import { Title, Badge, Subtitle } from "@/shared/ui";
 import Image from "next/image";
 import Link from "next/link";
+import { internalPath } from "@/shared/routes/routes";
 
 interface Props {
   img: string;
   title: string;
   descriptions: string;
   tags: string[];
-  link: string;
+  index: number;
 }
 
 export const ProjectCard = ({
@@ -15,10 +16,10 @@ export const ProjectCard = ({
   title,
   descriptions,
   tags,
-  link,
+  index,
 }: Props) => (
   <Link
-    href={link}
+    href={internalPath.project + index}
     className="flex flex-col border border-white/30 pb-4 hover:scale-101 transition-all duration-300 hover:border-white/80 max-w-[360px] bg-black w-full gap-4 rounded-md group overflow-hidden cursor-pointer"
   >
     <Image
@@ -31,7 +32,7 @@ export const ProjectCard = ({
 
     <div className="flex flex-col gap-2 px-4">
       <div className="flex items-center gap-1">
-        {tags.splice(0, 3).map((tag, index) => (
+        {tags?.splice(0, 3).map((tag, index) => (
           <Badge key={index} text={tag} />
         ))}
       </div>
