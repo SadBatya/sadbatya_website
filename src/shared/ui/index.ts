@@ -7,3 +7,4 @@ export { Textarea } from "./Textarea/Textarea";
 export { BurgerButton } from "./BurgerButton/BurgerButton";
 export { StackIcons } from "./StackIcons/ui/StackIcons";
 export { Badge } from "./Badge/Badge";
+export { Subtitle } from "./Subtitle/Subtitle";

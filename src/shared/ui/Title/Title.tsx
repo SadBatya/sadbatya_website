@@ -11,7 +11,10 @@ export const Title = ({ children, className, tag = "h1" }: Props) => {
   if (tag === "h1") {
     return (
       <h1
-        className={twMerge("lg:text-[48px] text-[38px] text-center", className)}
+        className={twMerge(
+          "lg:text-[48px] text-[38px] font-bold text-center",
+          className
+        )}
       >
         {children}
       </h1>
@@ -21,7 +24,10 @@ export const Title = ({ children, className, tag = "h1" }: Props) => {
   if (tag === "h2") {
     return (
       <h2
-        className={twMerge("lg:text-[40px] text-[30px] text-center", className)}
+        className={twMerge(
+          "lg:text-[40px] text-[30px] font-bold text-center",
+          className
+        )}
       >
         {children}
       </h2>
@@ -31,7 +37,10 @@ export const Title = ({ children, className, tag = "h1" }: Props) => {
   if (tag === "h3") {
     return (
       <h3
-        className={twMerge("lg:text-[30px] text-[20px] text-center", className)}
+        className={twMerge(
+          "lg:text-[30px] text-[20px] font-bold text-center",
+          className
+        )}
       >
         {children}
       </h3>
@@ -39,14 +48,26 @@ export const Title = ({ children, className, tag = "h1" }: Props) => {
   }
 
   if (tag === "h4") {
-    return <h4 className={twMerge("", className)}>{children}</h4>;
+    return (
+      <h4 className={twMerge("lg:text-[24px] text-[20px]", className)}>
+        {children}
+      </h4>
+    );
   }
 
   if (tag === "h5") {
-    return <h5 className={twMerge("", className)}>{children}</h5>;
+    return (
+      <h5 className={twMerge("lg:text-[20px] text-[16px]", className)}>
+        {children}
+      </h5>
+    );
   }
 
   if (tag === "h6") {
-    return <h6 className={twMerge("", className)}>{children}</h6>;
+    return (
+      <h6 className={twMerge("lg:text-[16px] text-[14px]", className)}>
+        {children}
+      </h6>
+    );
   }
 };
