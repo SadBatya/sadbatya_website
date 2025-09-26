@@ -5,6 +5,7 @@ interface Props {
 
 export const Textarea = ({ placeholder, name }: Props) => (
   <textarea
+    required
     placeholder={placeholder}
     name={name}
     id=""
