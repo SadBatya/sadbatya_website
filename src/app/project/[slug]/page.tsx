@@ -4,8 +4,12 @@ import { sections } from "@/shared/routes";
 import { Section, Title, Subtitle, Badge, Button } from "@/shared/ui";
 import Image from "next/image";
 
-export default function Page({ params }: { params: { slug: string } }) {
-  const project = projects[Number(params.slug)];
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const project = projects[Number((await params).slug)];
 
   return (
     <Section className="flex items-start xl:items-center justify-center flex-col xl:flex-row gap-8">
