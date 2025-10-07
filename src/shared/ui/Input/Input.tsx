@@ -6,6 +6,7 @@ interface Props {
 
 export const Input = ({ placeholder, type = "text", name }: Props) => (
   <input
+    minLength={3}
     required
     name={name}
     type={type}
