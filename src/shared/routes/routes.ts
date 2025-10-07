@@ -2,10 +2,14 @@ export const internalPath = {
   home: "/",
   about: "/about",
   projects: "/projects",
-  project: "/projects/:slug",
+  project: "/project/",
   posts: "/posts",
   contacts: "/contacts",
   mentoring: "/mentoring",
+};
+
+export const sections = {
+  projects: "/#projects",
 };
 
 export const externalPath = {

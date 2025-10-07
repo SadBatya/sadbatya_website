@@ -6,18 +6,12 @@ import { internalPath } from "@/shared/routes/routes";
 interface Props {
   img: string;
   title: string;
-  descriptions: string;
+  subtitle: string;
   tags: string[];
   index: number;
 }
 
-export const ProjectCard = ({
-  img,
-  title,
-  descriptions,
-  tags,
-  index,
-}: Props) => (
+export const ProjectCard = ({ img, title, subtitle, tags, index }: Props) => (
   <Link
     href={internalPath.project + index}
     className="flex flex-col border border-white/30 pb-4 hover:scale-101 transition-all duration-300 hover:border-white/80 max-w-[360px] bg-black w-full gap-4 rounded-md group overflow-hidden cursor-pointer"
@@ -39,7 +33,7 @@ export const ProjectCard = ({
       <Title className="font-semibold" tag="h4">
         {title}
       </Title>
-      <Subtitle className="text-left">{descriptions}</Subtitle>
+      <Subtitle className="text-left">{subtitle}</Subtitle>
     </div>
   </Link>
 );

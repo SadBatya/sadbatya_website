@@ -1,8 +1,10 @@
-export const Projects = [
+export const projects = [
   {
     img: "/projects/akystik.png",
     title: "Акустик",
-    descriptions: "Магазин слуховых аппаратов",
+    subtitle: "Магазин слуховых аппаратов",
+    descriptions:
+      "Комплексная платформа для подбора и покупки слуховых аппаратов с интеллектуальной системой диагностики слуха и персонализированными рекомендациями",
     stack: [
       "NextJS",
       "React",
@@ -22,13 +24,15 @@ export const Projects = [
       "Медицина",
       "Клиника",
     ],
-    link: "",
+    link: "https://akystik.ru",
     github: null,
   },
   {
     img: "/projects/boost.png",
     title: "Boost",
-    descriptions: "Платформа для подготовки к ОГЭ/ЕГЭ",
+    subtitle: "Платформа для подготовки к ОГЭ/ЕГЭ",
+    descriptions:
+      "Инновационная образовательная экосистема с адаптивным обучением, AI-репетитором и интерактивными симуляторами экзаменов для максимальной эффективности подготовки",
     stack: [
       "NextJS",
       "React",
@@ -43,13 +47,15 @@ export const Projects = [
       "FSD",
     ],
     tags: ["Платформа", "Подготовка", "Личный кабинет", "Курсы", "ОГЭ", "ЕГЭ"],
-    link: "",
+    link: "https://boost-ai.ru/",
     github: null,
   },
   {
     img: "/projects/fitsharing.png",
     title: "Fitsharing",
-    descriptions: "Аренда тренажеров",
+    subtitle: "Аренда тренажеров",
+    descriptions:
+      "P2P маркетплейс для аренды спортивного оборудования с системой доставки, страхования и онлайн-консультаций от фитнес-экспертов",
     stack: [
       "NextJS",
       "React",
@@ -62,14 +68,16 @@ export const Projects = [
       "Zod",
       "React Hook Form",
     ],
-    tags: ["Аренда", "Тренажеры", "Админ панель", "Курсы", "ОГЭ", "ЕГЭ"],
-    link: "",
+    tags: ["Аренда", "Тренажеры", "Админ панель", "Маркетплейс", "Фитнес"],
+    link: "https://fitsharing.ru/",
     github: null,
   },
   {
     img: "/projects/hite-bbq.png",
     title: "Hite BBQ",
-    descriptions: "Сайт ресторана для заказа еды",
+    subtitle: "Сайт ресторана для заказа еды",
+    descriptions:
+      "Премиум платформа для заказа авторских барбекю-блюд с системой отслеживания готовки в реальном времени и технологией AR-просмотра блюд",
     stack: [
       "NextJS",
       "React",
@@ -82,14 +90,16 @@ export const Projects = [
       "React Hook Form",
       "FSD",
     ],
-    tags: ["Ресторан", "Заказ", "Доставка"],
+    tags: ["Ресторан", "Заказ", "Доставка", "Барбекю", "Премиум"],
     link: "",
     github: null,
   },
   {
     img: "/projects/ibankrot.png",
     title: "IBankrot",
-    descriptions: "Юридическая помощь для оформления банкротства",
+    subtitle: "Юридическая помощь для оформления банкротства",
+    descriptions:
+      "Цифровой юрист-ассистент с AI-анализом финансовой ситуации и автоматическим составлением документов для процедуры банкротства физических лиц",
     stack: [
       "NextJS",
       "React",
@@ -101,14 +111,16 @@ export const Projects = [
       "Yup",
       "React Hook Form",
     ],
-    tags: ["Юридическая помощь", "Банкротство", "Оформление"],
-    link: "",
+    tags: ["Юридическая помощь", "Банкротство", "Оформление", "AI", "Финансы"],
+    link: "https://ibankrot.ru/",
     github: null,
   },
   {
     img: "/projects/result.png",
     title: "Result",
-    descriptions: "Платформа для обучения на Frontend",
+    subtitle: "Платформа для обучения на Frontend",
+    descriptions:
+      "Интерактивная среда обучения фронтенд-разработке с живыми проектами, системой код-ревью и интеграцией с реальными стартапами для практики",
     stack: [
       "NextJS",
       "React",
@@ -121,14 +133,16 @@ export const Projects = [
       "React Hook Form",
       "FSD",
     ],
-    tags: ["Платформа", "Подготовка", "Курсы", "ОГЭ", "ЕГЭ"],
-    link: "",
+    tags: ["Платформа", "Обучение", "Frontend", "Разработка", "Код-ревью"],
+    link: "https://result.school/",
     github: null,
   },
   {
     img: "/projects/taxi-ritm.png",
     title: "Taxi Ritm",
-    descriptions: "Такси Ритм — крупнейший таксопарк в Москве",
+    subtitle: "Такси Ритм — крупнейший таксопарк в Москве",
+    descriptions:
+      "Умная система управления корпоративным таксопарком с AI-оптимизацией маршрутов, телеметрией и предиктивной аналитикой спроса",
     stack: [
       "NextJS",
       "React",
@@ -141,8 +155,8 @@ export const Projects = [
       "React Hook Form",
       "FSD",
     ],
-    tags: ["Платформа", "Подготовка", "Курсы", "ОГЭ", "ЕГЭ"],
-    link: "",
+    tags: ["Такси", "Логистика", "AI", "Корпоративный", "Оптимизация"],
+    link: "https://www.taxi-ritm.ru/",
     github: null,
   },
 ];

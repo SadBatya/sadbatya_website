@@ -1,1 +1,1 @@
-export { internalPath, externalPath } from "./routes";
+export { internalPath, externalPath, sections } from "./routes";
