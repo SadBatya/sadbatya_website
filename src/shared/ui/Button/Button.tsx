@@ -9,6 +9,7 @@ interface Props {
   href?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
   onClick?: () => void;
+  type?: "submit" | "button";
 }
 
 export const Button = ({
@@ -18,6 +19,7 @@ export const Button = ({
   href,
   target = "_self",
   onClick,
+  type,
 }: Props) => {
   if (href) {
     return (
@@ -29,6 +31,7 @@ export const Button = ({
 
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={disabled}
       className="relative group w-fit"

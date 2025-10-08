@@ -57,7 +57,12 @@ export const Title = ({ children, className, tag = "h1" }: Props) => {
 
   if (tag === "h5") {
     return (
-      <h5 className={twMerge("lg:text-[20px] text-[16px]", className)}>
+      <h5
+        className={twMerge(
+          "lg:text-[20px] text-[16px] font-semibold",
+          className
+        )}
+      >
         {children}
       </h5>
     );

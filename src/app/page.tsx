@@ -1,8 +1,9 @@
 import {
   SectionHero,
   SectionAbout,
-  SectionForm,
   SectionProjects,
+  SectionServices,
+  SectionForm,
 } from "@/page";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <SectionHero />
       <SectionAbout />
       <SectionProjects />
+      <SectionServices />
       <SectionForm />
     </>
   );
