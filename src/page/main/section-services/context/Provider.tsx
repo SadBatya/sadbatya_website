@@ -1,19 +1,14 @@
 "use client";
-import { createContext, type ReactNode, useState, useContext } from "react";
 
-interface IService {
-  id: number;
-  price: number;
-}
+import { createContext, type ReactNode, useState, useContext } from "react";
+import { type IServiceCard } from "@/shared/types";
 
 interface IServicesContext {
   price: number;
-  selectedServices: {
-    id: number;
-    price: number;
-  }[];
-  toggleService: (service: IService) => void;
+  selectedServices: IServiceCard[];
+  toggleService: (service: IServiceCard) => void;
   clearSelection: () => void;
+  handleHoursIncrement: (id: number, service: IServiceCard) => void;
 }
 
 export const ServicesContext = createContext<IServicesContext | undefined>(
@@ -25,9 +20,23 @@ interface Props {
 }
 
 export const ServiceProvider = ({ children }: Props) => {
-  const [selectedServices, setSelectedServices] = useState<IService[]>([]);
+  const [selectedServices, setSelectedServices] = useState<IServiceCard[]>([]);
 
-  const toggleService = (service: IService) => {
+  const handleHoursIncrement = (id: number, service: IServiceCard) => {
+    setSelectedServices((prev) => {
+      const currentService = prev.find((s) => s.id === id);
+
+      if (currentService && currentService?.hours) {
+        currentService.hours += 1;
+      } else {
+        return [...prev, { ...service, hours: 2 }];
+      }
+
+      return prev;
+    });
+  };
+
+  const toggleService = (service: IServiceCard) => {
     setSelectedServices((prev) => {
       const isSelected = prev.some((s) => s.id === service.id);
 
@@ -43,14 +52,19 @@ export const ServiceProvider = ({ children }: Props) => {
     setSelectedServices([]);
   };
 
-  const price = selectedServices.reduce(
-    (acc, service) => acc + service.price,
-    0
-  );
+  const price = selectedServices.reduce((acc, service) => {
+    return acc + (service.price || 0) * (service.hours || 1);
+  }, 0);
 
   return (
     <ServicesContext.Provider
-      value={{ price, selectedServices, toggleService, clearSelection }}
+      value={{
+        price,
+        selectedServices,
+        toggleService,
+        clearSelection,
+        handleHoursIncrement,
+      }}
     >
       {children}
     </ServicesContext.Provider>

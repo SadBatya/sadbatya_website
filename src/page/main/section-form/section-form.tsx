@@ -6,6 +6,11 @@ import { useActionState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { externalPath } from "@/shared/routes";
+import { useForm } from "react-hook-form";
+import { zodSсhemes } from "@/shared/zod-schemes";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSendMessage } from "@/shared/api/hooks";
 
 interface IFormData {
   message: {
@@ -17,47 +22,71 @@ interface IFormData {
   success: boolean;
 }
 
+const schema = z.object({
+  name: zodSсhemes.name,
+  telegram: zodSсhemes.telegram,
+  textarea: zodSсhemes.textarea,
+});
+
 export const SectionForm = () => {
   const { value: formStateCookie, setCookie: setFormStateCookie } = useCookies(
     "main-form",
     ""
   );
 
-  const [state, submitAction, isPending] = useActionState<IFormData, FormData>(
-    async (_prev, formData) => {
-      const name = (formData.get("name") ?? "").toString().trim();
-      const telegram = (formData.get("telegram") ?? "").toString().trim();
-      const message =
-        (formData.get("message") ?? "").toString().trim() || undefined;
+  const { mutation: sendMessage, isPending, isSuccess } = useSendMessage();
 
-      try {
-        await axios.post("/api/send", { name, telegram, message });
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
 
-        setFormStateCookie("true", 1);
+  const onSubmit = handleSubmit((data) => {
+    sendMessage(data);
 
-        return {
-          message: { name, telegram, message },
-          errors: [],
-          success: true,
-        };
-      } catch (e) {
-        const err = e instanceof Error ? e.message : "Неизвестная ошибка";
-        console.error(e, "Ошибка отправки формы");
-        return {
-          message: { name, telegram, message },
-          errors: [err],
-          success: false,
-        };
-      }
-    },
-    {
-      message: { name: "", telegram: "", message: undefined },
-      errors: [],
-      success: false,
+    if (isSuccess) {
+      setFormStateCookie("true", 1);
     }
-  );
+  });
 
-  if (state.success || formStateCookie === "true") {
+  // const [state, submitAction, isPending] = useActionState<IFormData, FormData>(
+  //   async (_prev, formData) => {
+  //     const name = (formData.get("name") ?? "").toString().trim();
+  //     const telegram = (formData.get("telegram") ?? "").toString().trim();
+  //     const message =
+  //       (formData.get("message") ?? "").toString().trim() || undefined;
+
+  //     try {
+  //       await axios.post("/api/send", { name, telegram, message });
+
+  //       setFormStateCookie("true", 1);
+
+  //       return {
+  //         message: { name, telegram, message },
+  //         errors: [],
+  //         success: true,
+  //       };
+  //     } catch (e) {
+  //       const err = e instanceof Error ? e.message : "Неизвестная ошибка";
+  //       console.error(e, "Ошибка отправки формы");
+  //       return {
+  //         message: { name, telegram, message },
+  //         errors: [err],
+  //         success: false,
+  //       };
+  //     }
+  //   },
+  //   {
+  //     message: { name: "", telegram: "", message: undefined },
+  //     errors: [],
+  //     success: false,
+  //   }
+  // );
+
+  if (isSuccess || formStateCookie === "true") {
     return (
       <Section
         height="full"
@@ -92,13 +121,33 @@ export const SectionForm = () => {
       </Title>
 
       <form
-        action={submitAction}
+        onSubmit={onSubmit}
         className="max-w-[680px] items-center mx-auto flex flex-col gap-8"
       >
-        <Input placeholder="Имя..." name="name" type="text" />
-        <Input placeholder="Телеграм..." name="telegram" type="text" />
-        <Textarea placeholder="Сообщение..." name="message" />
-        <Button disabled={isPending} className="px-8 py-2 text-lg">
+        <Input
+          {...register("name")}
+          error={errors.name?.message}
+          placeholder="Имя..."
+          name="name"
+          type="text"
+        />
+        <Input
+          {...register("telegram")}
+          error={errors.telegram?.message}
+          placeholder="Телеграм..."
+          name="telegram"
+          type="text"
+        />
+        <Textarea
+          {...register("textarea")}
+          placeholder="Сообщение..."
+          name="message"
+        />
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="px-8 py-2 text-lg"
+        >
           {isPending ? "Отправка..." : "Отправить"}
         </Button>
       </form>

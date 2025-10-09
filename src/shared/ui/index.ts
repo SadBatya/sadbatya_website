@@ -1,3 +1,4 @@
+export { ErrorMessage } from "./ErrorMessage/ErrorMessage";
 export { Counter } from "./Counter/Counter";
 export { TypedText } from "./TypedText/TypedText";
 export { Section } from "./Section/Section";

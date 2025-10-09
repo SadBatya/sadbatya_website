@@ -19,7 +19,7 @@ export const Button = ({
   href,
   target = "_self",
   onClick,
-  type,
+  type = "button",
 }: Props) => {
   if (href) {
     return (
@@ -36,7 +36,9 @@ export const Button = ({
       disabled={disabled}
       className="relative group w-fit"
     >
-      <Content className={className}>{children}</Content>
+      <Content className={twMerge("text-nowrap", className)}>
+        {children}
+      </Content>
     </button>
   );
 };
