@@ -1,4 +1,4 @@
-import { telegramApi } from "./api";
+import axios from "axios";
 
 interface ICreateOrder {
   name: string;
@@ -7,7 +7,7 @@ interface ICreateOrder {
 }
 
 export const sendMessage = (order: ICreateOrder) => {
-  const response = telegramApi.post("/send", order);
+  const response = axios.post("/send", order);
 
   return response;
 };
