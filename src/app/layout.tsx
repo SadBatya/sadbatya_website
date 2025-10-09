@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/widgets";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { TanstackProvider } from "@/shared/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,8 +38,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
-        <Header />
-        {children}
+        <TanstackProvider>
+          <Header />
+          {children}
+        </TanstackProvider>
         <Analytics />
         <SpeedInsights />
       </body>

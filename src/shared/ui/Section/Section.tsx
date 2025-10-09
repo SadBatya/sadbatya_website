@@ -11,7 +11,7 @@ interface Props {
 export const Section = ({ className, children, id, height }: Props) => (
   <section
     className={twMerge(
-      "max-w-[1440px] w-[calc(100%-40px)] mx-auto overflow-hidden",
+      "max-w-[1440px] w-[calc(100%-40px)] mx-auto",
       height === "full" ? "h-full py-20 lg:py-40" : "h-dvh",
       className
     )}

@@ -28,5 +28,5 @@ body {
   background: #171717;
   color: #ededed;
   font-family: var(--font-poppins), Helvetica, sans-serif;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }

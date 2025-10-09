@@ -1,11 +1,13 @@
-import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
+import { NextRequest, NextResponse } from "next/server";
 
-interface OrderRequest {
+export type OrderRequest = {
   name: string;
   telegram: string;
   message?: string;
-}
+  services: string;
+  price: string;
+};
 
 export type OrderResponse =
   | { success: true }
@@ -15,30 +17,32 @@ export async function POST(req: NextRequest) {
   try {
     const body: OrderRequest = await req.json();
 
-    const { name, telegram, message } = body;
+    const { name, telegram, message, services, price } = body;
 
     const res = await axios.post(
       `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`,
       {
         chat_id: process.env.CHAT_ID,
-        text: `Имя: ${name}\nТелеграм: ${telegram}\nСообщение: ${
-          message ?? "-"
+        text: `Имя: ${name}\nТелеграм: ${telegram}\nЗаказ: ${services}\nИтого: ${price}\nСообщение: ${
+          message ?? ""
         }`,
       }
     );
 
     if (res.data.ok) {
       return NextResponse.json<OrderResponse>({ success: true });
-    } else {
-      return NextResponse.json<OrderResponse>({
-        success: false,
-        error: "Telegram API error",
-      });
     }
-  } catch (error) {
+
     return NextResponse.json<OrderResponse>({
       success: false,
-      error: error instanceof Error ? error.message : "Unknown error",
+      error: "Telegram API error",
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+
+    return NextResponse.json<OrderResponse>({
+      success: false,
+      error: message,
     });
   }
 }
