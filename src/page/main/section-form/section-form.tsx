@@ -2,8 +2,6 @@
 
 import { Section, Title, Textarea, Input, Button } from "@/shared/ui";
 import { useCookies } from "@/shared/hooks";
-import { useActionState } from "react";
-import axios from "axios";
 import Image from "next/image";
 import { externalPath } from "@/shared/routes";
 import { useForm } from "react-hook-form";
@@ -11,16 +9,6 @@ import { zodSсhemes } from "@/shared/zod-schemes";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSendMessage } from "@/shared/api/hooks";
-
-interface IFormData {
-  message: {
-    name: string;
-    telegram: string;
-    message?: string;
-  };
-  errors?: string[];
-  success: boolean;
-}
 
 const schema = z.object({
   name: zodSсhemes.name,
