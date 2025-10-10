@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/widgets";
+import { Header, Footer } from "@/widgets";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { TanstackProvider } from "@/shared/provider";
@@ -44,6 +44,7 @@ export default function RootLayout({
           <ProgressBar />
           <Header />
           {children}
+          <Footer />
           <ToastContainer />
         </TanstackProvider>
         <Analytics />
