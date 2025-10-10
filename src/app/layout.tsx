@@ -5,6 +5,7 @@ import { Header } from "@/widgets";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { TanstackProvider } from "@/shared/provider";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,6 +42,7 @@ export default function RootLayout({
         <TanstackProvider>
           <Header />
           {children}
+          <ToastContainer />
         </TanstackProvider>
         <Analytics />
         <SpeedInsights />

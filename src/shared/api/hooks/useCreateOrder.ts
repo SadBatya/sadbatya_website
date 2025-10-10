@@ -1,10 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import { createOrder } from "../create-order";
+import { toast } from "react-toastify";
 
 export const useCreateOrder = () => {
   const mutation = useMutation({
     mutationFn: createOrder,
-    onSuccess: () => console.log("Заявка успешно отправлена"),
+    onSuccess: () =>
+      toast("Заказ успешно отправлен", {
+        theme: "dark",
+        type: "success",
+        position: "bottom-right",
+      }),
   });
 
   return {
