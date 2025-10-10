@@ -40,40 +40,6 @@ export const SectionForm = () => {
     }
   });
 
-  // const [state, submitAction, isPending] = useActionState<IFormData, FormData>(
-  //   async (_prev, formData) => {
-  //     const name = (formData.get("name") ?? "").toString().trim();
-  //     const telegram = (formData.get("telegram") ?? "").toString().trim();
-  //     const message =
-  //       (formData.get("message") ?? "").toString().trim() || undefined;
-
-  //     try {
-  //       await axios.post("/api/send", { name, telegram, message });
-
-  //       setFormStateCookie("true", 1);
-
-  //       return {
-  //         message: { name, telegram, message },
-  //         errors: [],
-  //         success: true,
-  //       };
-  //     } catch (e) {
-  //       const err = e instanceof Error ? e.message : "Неизвестная ошибка";
-  //       console.error(e, "Ошибка отправки формы");
-  //       return {
-  //         message: { name, telegram, message },
-  //         errors: [err],
-  //         success: false,
-  //       };
-  //     }
-  //   },
-  //   {
-  //     message: { name: "", telegram: "", message: undefined },
-  //     errors: [],
-  //     success: false,
-  //   }
-  // );
-
   if (isSuccess || formStateCookie === "true") {
     return (
       <Section
