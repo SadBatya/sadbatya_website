@@ -1,7 +1,7 @@
 "use client";
 
-import { ServiceCard, Title } from "@/shared/ui";
-
+import { Title } from "@/shared/ui";
+import { ServiceCard } from "@/entities";
 import { services } from "../model/data";
 
 import { useServices } from "@/page/main/section-services/context/Provider";

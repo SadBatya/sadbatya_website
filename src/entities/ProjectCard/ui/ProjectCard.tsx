@@ -14,7 +14,7 @@ interface Props {
 export const ProjectCard = ({ img, title, subtitle, tags, index }: Props) => (
   <Link
     href={internalPath.project + index}
-    className="flex flex-col border border-white/30 pb-4 hover:scale-101 transition-all duration-300 hover:border-white/80 max-w-[360px] bg-black w-full gap-4 rounded-md group overflow-hidden cursor-pointer"
+    className="flex flex-col border border-white/30 pb-4 hover:scale-101 transition-all duration-300 hover:border-white/80 md:max-w-[360px] bg-black w-full gap-4 rounded-md group overflow-hidden cursor-pointer"
   >
     <Image
       src={img}
@@ -25,7 +25,7 @@ export const ProjectCard = ({ img, title, subtitle, tags, index }: Props) => (
     />
 
     <div className="flex flex-col gap-2 px-4">
-      <div className="flex items-center gap-1">
+      <div className="flex items-center flex-wrap gap-1">
         {tags?.splice(0, 3).map((tag, index) => (
           <Badge key={index} text={tag} />
         ))}

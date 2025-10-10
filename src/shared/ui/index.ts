@@ -11,5 +11,4 @@ export { BurgerButton } from "./BurgerButton/BurgerButton";
 export { StackIcons } from "./StackIcons/ui/StackIcons";
 export { Badge } from "./Badge/Badge";
 export { Subtitle } from "./Subtitle/Subtitle";
-export { ServiceCard } from "./ServiceCard/ServiceCard";
 export { CounterWithButton } from "./CounterWithButton/CounterWithButton";
