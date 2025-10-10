@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import { sendMessage } from "../send-message";
+import { sendApplication } from "../send-application";
 
 export const useSendMessage = () => {
   const mutation = useMutation({
-    mutationFn: sendMessage,
+    mutationFn: sendApplication,
     onSuccess: () => console.log("Данные успешно отправлены"),
   });
 

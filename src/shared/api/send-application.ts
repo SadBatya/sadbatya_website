@@ -6,8 +6,8 @@ interface ICreateOrder {
   textarea?: string;
 }
 
-export const sendMessage = (order: ICreateOrder) => {
-  const response = axios.post("api/send", order);
+export const sendApplication = (order: ICreateOrder) => {
+  const response = axios.post("api/send-application", order);
 
   return response;
 };

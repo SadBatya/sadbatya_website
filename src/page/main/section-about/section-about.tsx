@@ -10,8 +10,7 @@ export const SectionAbout = () => (
         <li className="flex items-start gap-3">
           <span className="text-emerald-500">✓</span>
           <span>
-            <strong>5+ лет коммерческой разработки</strong> на стеке
-            React/Next.js
+            <strong>5+ лет коммерческой разработки</strong>
           </span>
         </li>
         <li className="flex items-start gap-3">
@@ -28,7 +27,6 @@ export const SectionAbout = () => (
             оптимизация производительности и UX
           </span>
         </li>
-
         <li className="flex items-start gap-3">
           <span className="text-emerald-500">✓</span>
           <span>
