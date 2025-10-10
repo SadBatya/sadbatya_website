@@ -5,6 +5,8 @@ import { zodSсhemes } from "@/shared/zod-schemes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateOrder } from "@/shared/api/hooks";
 import { type IServiceCard } from "@/shared/types";
+import { FormSendCompleted } from "@/widgets";
+import { useCookies } from "@/shared/hooks";
 
 const schema = z.object({
   name: zodSсhemes.name,
@@ -20,7 +22,10 @@ interface Props {
 
 export const CreateOrder = ({ selectedServices, onClear, price }: Props) => {
   const { createOrder, isPending, isSuccess } = useCreateOrder();
-
+  const { value: formStateCookie, setCookie: setFormStateCookie } = useCookies(
+    "order-form",
+    ""
+  );
   const {
     register,
     handleSubmit,
@@ -38,10 +43,15 @@ export const CreateOrder = ({ selectedServices, onClear, price }: Props) => {
     createOrder(order);
 
     if (isSuccess) {
+      setFormStateCookie("true", 1);
       onClear();
       reset();
     }
   };
+
+  if (isSuccess || formStateCookie === "true") {
+    return <FormSendCompleted />;
+  }
 
   return (
     <form

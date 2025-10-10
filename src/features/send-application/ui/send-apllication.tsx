@@ -1,12 +1,11 @@
-import { Textarea, Input, Button, Section } from "@/shared/ui";
-import { externalPath } from "@/shared/routes";
+import { Textarea, Input, Button } from "@/shared/ui";
 import { useCookies } from "@/shared/hooks";
 import { useForm } from "react-hook-form";
 import { zodSсhemes } from "@/shared/zod-schemes";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSendMessage } from "@/shared/api/hooks";
-import Image from "next/image";
+import { FormSendCompleted } from "@/widgets";
 
 const schema = z.object({
   name: zodSсhemes.name,
@@ -39,31 +38,7 @@ export const SendApplication = () => {
   });
 
   if (isSuccess || formStateCookie === "true") {
-    return (
-      <Section
-        height="full"
-        id="form"
-        className="flex flex-col gap-8 items-center justify-center"
-      >
-        <span className="text-white text-center font-semibold uppercase text-2xl">
-          Данные успешно отправлены
-        </span>
-        <Image src="/gifs/raccoon.gif" alt="raccoon" width={300} height={300} />
-        <Button
-          href={externalPath.telegramChannel}
-          target="_blank"
-          className="px-4 py-2 text-lg flex items-center gap-2"
-        >
-          <Image
-            src="/socials-icons/telegram.svg"
-            alt="telegram"
-            width={24}
-            height={24}
-          />
-          Перейти в телеграм
-        </Button>
-      </Section>
-    );
+    return <FormSendCompleted />;
   }
 
   return (
