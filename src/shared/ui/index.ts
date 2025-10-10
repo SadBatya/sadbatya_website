@@ -1,3 +1,4 @@
+export { ProgressBar } from "./ProgressBar/ProgressBar";
 export { ErrorMessage } from "./ErrorMessage/ErrorMessage";
 export { Counter } from "./Counter/Counter";
 export { TypedText } from "./TypedText/TypedText";

@@ -15,7 +15,7 @@ export const Header = () => {
   useBodyScrollLock(isMenuOpen);
 
   return (
-    <header className="border-b border-[#2A2A2A] bg-[#121212] shadow-md shadow-blue-500/10 fixed top-0 w-full z-50">
+    <header className="border-b border-[#2A2A2A] bg-[#121212] shadow-md shadow-blue-500/10 sticky top-0 w-full z-50">
       <div className="max-w-[1440px] w-[calc(100%-40px)] mx-auto flex items-center py-8 justify-between">
         <div className="flex items-center gap-16">
           <Link href="/">

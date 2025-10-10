@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const SectionHero = () => {
   return (
-    <Section className="h-screen w-screen flex flex-col items-center justify-center">
+    <Section className="h-[calc(100dvh-105px)] w-screen flex flex-col items-center justify-center">
       <TypedText
         className="text-[38px] italic font-sans mb-8 lg:text-[48px]"
         wrapper="h1"
