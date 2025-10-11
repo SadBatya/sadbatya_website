@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import { Header, Footer } from "@/widgets";
+import { Header, Footer, ScrollButton, ProgressBar } from "@/widgets";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { TanstackProvider } from "@/shared/provider";
 import { ToastContainer } from "react-toastify";
-import { ProgressBar } from "@/shared/ui";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +43,7 @@ export default function RootLayout({
           <ProgressBar />
           <Header />
           {children}
+          <ScrollButton />
           <Footer />
           <ToastContainer />
         </TanstackProvider>
