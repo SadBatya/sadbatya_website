@@ -12,7 +12,7 @@ export const ProgressBar = () => {
 
   return (
     <motion.div
-      className="fixed top-0 w-full h-1 origin-left transition-all duration-75 bg-white/80 z-[100]"
+      className="fixed top-0 w-full h-0.5 origin-left transition-all duration-75 bg-white/80 z-[100]"
       style={{
         scaleX,
       }}
