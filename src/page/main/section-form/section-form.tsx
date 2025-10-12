@@ -1,15 +1,12 @@
 "use client";
 
-import { Section, Title } from "@/shared/ui";
+import { Section, Title, Subtitle } from "@/shared/ui";
 import { SendApplication } from "@/features/send-application";
 
-export const SectionForm = () => {
-  return (
-    <Section height="full" id="form">
-      <Title tag="h2" className="mb-16 lg:mb-20">
-        Связаться со мной
-      </Title>
-      <SendApplication />
-    </Section>
-  );
-};
+export const SectionForm = () => (
+  <Section height="full" id="form" className="flex flex-col gap-8">
+    <Title tag="h2">Оставить заявку</Title>
+    <Subtitle>Оставь заявку и я напишу тебе в телеграм в течение дня</Subtitle>
+    <SendApplication />
+  </Section>
+);

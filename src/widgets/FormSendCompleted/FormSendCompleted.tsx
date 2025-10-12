@@ -3,13 +3,13 @@ import { Button } from "@/shared/ui";
 import { externalPath } from "@/shared/routes";
 
 interface Props {
-  title?: string;
+  title: string;
 }
 
 export const FormSendCompleted = ({ title }: Props) => (
   <div id="form" className="flex flex-col gap-8 items-center justify-center">
     <span className="text-white text-center font-semibold uppercase text-2xl">
-      {title ?? "Данные успешно отправлены"}
+      {title}
     </span>
     <Image src="/gifs/raccoon.gif" alt="raccoon" width={300} height={300} />
     <div className="flex flex-wrap gap-4 items-center justify-center">

@@ -38,13 +38,13 @@ export const SendApplication = () => {
   });
 
   if (isSuccess || formStateCookie === "true") {
-    return <FormSendCompleted />;
+    return <FormSendCompleted title="Данные успешно отправлены" />;
   }
 
   return (
     <form
       onSubmit={onSubmit}
-      className="max-w-[680px] items-center mx-auto flex flex-col gap-8"
+      className="max-w-[680px] w-full items-center mx-auto flex flex-col gap-8"
     >
       <Input
         {...register("name")}

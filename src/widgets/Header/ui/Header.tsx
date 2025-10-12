@@ -38,7 +38,7 @@ export const Header = () => {
           </nav>
         </div>
         <Button href={internalPath.home + "#form"} className="hidden lg:block">
-          Связаться
+          Оставить заявку
         </Button>
         <BurgerButton
           isOpen={isMenuOpen}
