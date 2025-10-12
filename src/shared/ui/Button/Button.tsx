@@ -10,6 +10,7 @@ interface Props {
   target?: "_blank" | "_self" | "_parent" | "_top";
   onClick?: () => void;
   type?: "submit" | "button";
+  dataTestId?: string;
 }
 
 export const Button = ({
@@ -19,6 +20,7 @@ export const Button = ({
   href,
   target = "_self",
   onClick,
+  dataTestId,
   type = "button",
 }: Props) => {
   if (href) {
@@ -31,6 +33,7 @@ export const Button = ({
 
   return (
     <button
+      data-testid={dataTestId}
       type={type}
       onClick={onClick}
       disabled={disabled}

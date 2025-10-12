@@ -7,15 +7,23 @@ interface Props {
   placeholder: string;
   name: string;
   sample?: string;
+  dataTestId?: string;
 }
 
-export const Textarea = ({ placeholder, name, sample, ...props }: Props) => {
+export const Textarea = ({
+  placeholder,
+  name,
+  sample,
+  dataTestId,
+  ...props
+}: Props) => {
   const [value, setValue] = useState("");
 
   return (
     <div className="relative w-full">
       <textarea
         {...props}
+        data-testid={dataTestId}
         defaultValue={value}
         placeholder={placeholder}
         name={name}

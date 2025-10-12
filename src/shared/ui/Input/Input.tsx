@@ -18,7 +18,7 @@ export const Input = ({
 }: Props) => (
   <div className="flex flex-col gap-2 w-full">
     <input
-      data-testId={dataTestId}
+      data-testid={dataTestId}
       {...props}
       name={name}
       type={type}

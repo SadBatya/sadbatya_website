@@ -64,10 +64,16 @@ export const SendApplication = () => {
       />
       <Textarea
         {...register("textarea")}
+        dataTestId="application-form-description"
         placeholder="Сообщение..."
         name="message"
       />
-      <Button type="submit" disabled={isPending} className="px-8 py-2 text-lg">
+      <Button
+        dataTestId="application-form-button"
+        type="submit"
+        disabled={isPending}
+        className="px-8 py-2 text-lg"
+      >
         {isPending ? "Отправка..." : "Отправить"}
       </Button>
     </form>
