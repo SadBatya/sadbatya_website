@@ -1,3 +1,4 @@
+export { SectionTimerToast } from "./main/section-timer-toast/section-timer-toast";
 export { SectionServices } from "./main/section-services/ui/section-services";
 export { SectionHero } from "./main/section-hero/ui/section-hero";
 export { SectionAbout } from "./main/section-about/section-about";

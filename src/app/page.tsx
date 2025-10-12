@@ -1,4 +1,5 @@
 import {
+  SectionTimerToast,
   SectionHero,
   SectionAbout,
   SectionProjects,
@@ -9,6 +10,7 @@ import {
 export default function Home() {
   return (
     <>
+      <SectionTimerToast />
       <SectionHero />
       <SectionAbout />
       <SectionProjects />

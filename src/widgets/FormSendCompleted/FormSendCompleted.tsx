@@ -2,10 +2,14 @@ import Image from "next/image";
 import { Button } from "@/shared/ui";
 import { externalPath } from "@/shared/routes";
 
-export const FormSendCompleted = () => (
+interface Props {
+  title?: string;
+}
+
+export const FormSendCompleted = ({ title }: Props) => (
   <div id="form" className="flex flex-col gap-8 items-center justify-center">
     <span className="text-white text-center font-semibold uppercase text-2xl">
-      Данные успешно отправлены
+      {title ?? "Данные успешно отправлены"}
     </span>
     <Image src="/gifs/raccoon.gif" alt="raccoon" width={300} height={300} />
     <div className="flex flex-wrap gap-4 items-center justify-center">

@@ -50,7 +50,7 @@ export const CreateOrder = ({ selectedServices, onClear, price }: Props) => {
   };
 
   if (isSuccess || formStateCookie === "true") {
-    return <FormSendCompleted />;
+    return <FormSendCompleted title="Заказ успешно оформлен" />;
   }
 
   return (

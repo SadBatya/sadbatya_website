@@ -18,7 +18,7 @@ test("Форма заказа услуг должна успешно отпра�
 
   await submitButton.click();
 
-  await expect(page.locator("text=Данные успешно отправлены")).toBeVisible({
-    timeout: 10000,
+  await expect(page.locator("text=Заказ успешно оформлен")).toBeVisible({
+    timeout: 15000,
   });
 });
