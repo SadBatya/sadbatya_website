@@ -48,6 +48,7 @@ export const SendApplication = () => {
     >
       <Input
         {...register("name")}
+        dataTestId="application-form-name"
         error={errors.name?.message}
         placeholder="Имя..."
         name="name"
@@ -55,6 +56,7 @@ export const SendApplication = () => {
       />
       <Input
         {...register("telegram")}
+        dataTestId="application-form-telegram"
         error={errors.telegram?.message}
         placeholder="Телеграм..."
         name="telegram"

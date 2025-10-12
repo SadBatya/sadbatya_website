@@ -5,6 +5,7 @@ interface Props {
   type?: string;
   name: string;
   error?: string;
+  dataTestId?: string;
 }
 
 export const Input = ({
@@ -12,10 +13,12 @@ export const Input = ({
   type = "text",
   name,
   error,
+  dataTestId,
   ...props
 }: Props) => (
   <div className="flex flex-col gap-2 w-full">
     <input
+      data-testId={dataTestId}
       {...props}
       name={name}
       type={type}
