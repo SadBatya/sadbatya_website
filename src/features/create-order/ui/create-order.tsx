@@ -62,18 +62,21 @@ export const CreateOrder = ({ selectedServices, onClear, price }: Props) => {
       <Subtitle size="large">Заполните форму</Subtitle>
       <Input
         {...register("name")}
+        dataTestId="create-order-form-name"
         error={errors.name?.message}
         placeholder="Имя..."
         name="name"
       />
       <Input
         {...register("telegram")}
+        dataTestId="create-order-form-telegram"
         placeholder="Телеграм..."
         error={errors.telegram?.message}
         name="telegram"
       />
       <Textarea
         {...register("textarea")}
+        dataTestId="create-order-form-description"
         placeholder="Сообщение..."
         name="message"
       />
@@ -94,7 +97,7 @@ export const CreateOrder = ({ selectedServices, onClear, price }: Props) => {
         <Button className="px-4 py-3" type="button" onClick={onClear}>
           Сбросить
         </Button>
-        <Button disabled={isPending} className="px-4 py-3" type="submit">
+        <Button dataTestId="create-order-form-button" disabled={isPending} className="px-4 py-3" type="submit">
           Заказать услугу
         </Button>
       </div>

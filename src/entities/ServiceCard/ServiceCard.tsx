@@ -20,6 +20,7 @@ export const ServiceCard = (service: Props) => {
 
   return (
     <div
+      data-testid={"service-card"}
       onClick={() => toggleService({ ...service, price: isDiscountPrice })}
       className={twMerge(
         "flex items-center bg-white/5 gap-4 justify-between p-4 rounded-md border border-white/50 transition-all duration-300 cursor-pointer",
