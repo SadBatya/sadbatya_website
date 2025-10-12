@@ -4,14 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "vercel-build": "npx playwright install && npm run test:e2e && next build",
+    "build": "next build",
     "start": "next start",
     "test": "npx playwright test",
     "test:e2e": "npx playwright test",
     "test:e2e:ci": "npx playwright test --reporter=line",
     "test:ui": "npx playwright test --ui",
     "playwright:install": "npx playwright install",
-    "playwright:show-report": "npx playwright show-report"
+    "playwright:show-report": "npx playwright show-report",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -33,6 +34,8 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@eslint/eslintrc": "^3",
     "@playwright/test": "^1.56.0",
     "@tailwindcss/postcss": "^4.1.12",
@@ -41,6 +44,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
+    "husky": "^9.1.7",
     "tailwindcss": "^4.1.12",
     "typescript": "^5"
   }
