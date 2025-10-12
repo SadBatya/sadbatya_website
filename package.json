@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "vercel-build": "npm run test:e2e && next build",
+    "vercel-build": "npx playwright install && npm run test:e2e && next build",
     "start": "next start",
     "test": "npx playwright test",
     "test:e2e": "npx playwright test",
