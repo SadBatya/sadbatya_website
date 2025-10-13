@@ -1,19 +1,27 @@
 "use client";
 
-import { Section, Title, Button, Container, Chip } from "@/shared/ui";
+import {
+  Section,
+  Title,
+  Button,
+  Container,
+  Chip,
+  Subtitle,
+  LinkButton,
+} from "@/shared/ui";
 import { ProgressBar } from "@/widgets";
 import { TestVariantCard } from "@/entities";
 import { testQuestions } from "../model/data";
 import { usePathname } from "next/navigation";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
+import { internalPath } from "@/shared/routes";
 
 export const SectionTest = () => {
   const [currentAnswer, setCurrentAnswer] = useState<number | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
-  const aswers = [];
-
+  const [answers, setAnswers] = useState<boolean[]>([]);
+  const [finishTest, setFinishTest] = useState(false);
   const pathname = usePathname();
 
   const [level] = useQueryState("level", {
@@ -23,7 +31,49 @@ export const SectionTest = () => {
   const test = testQuestions[pathname.split("/")[2]];
   const currentLevelTest = test[level as "base" | "medium" | "advanced"];
 
-  const progress = currentQuestion + 1 / currentLevelTest.length;
+  const progress = (currentQuestion + 1) / currentLevelTest.length;
+
+  const handleChooseAnswer = (answer: boolean, index: number) => {
+    setAnswers((prev) => [...prev.slice(0, currentQuestion), answer]);
+    setCurrentAnswer(index);
+  };
+
+  const handleNextQuestion = () => {
+    setCurrentQuestion(currentQuestion + 1);
+    setCurrentAnswer(null);
+  };
+
+  const handlePreviousQuestion = () => {
+    setCurrentQuestion(currentQuestion - 1);
+    setCurrentAnswer(null);
+  };
+
+  const handleRepeatTest = () => {
+    setFinishTest(false);
+    setAnswers([]);
+    setCurrentQuestion(0);
+    setCurrentAnswer(null);
+  };
+
+  if (finishTest) {
+    return (
+      <Section className="flex flex-col gap-4 items-center justify-center">
+        <Title tag="h2">Тест завершен</Title>
+        <Subtitle className="text-xl">
+          Ваш результат: {answers.filter((answer) => answer).length} из{" "}
+          {currentLevelTest.length}
+        </Subtitle>
+        <div className="flex items-center gap-4">
+          <Button className="px-4 py-2" onClick={handleRepeatTest}>
+            Попробовать снова
+          </Button>
+          <LinkButton href={internalPath.simulator}>
+            Вернуться к списку
+          </LinkButton>
+        </div>
+      </Section>
+    );
+  }
 
   return (
     <Section className="flex flex-col justify-between py-5">
@@ -35,7 +85,7 @@ export const SectionTest = () => {
         <Title tag="h4">{currentLevelTest[currentQuestion].question}</Title>
         <ul className="flex flex-col gap-4">
           {currentLevelTest[currentQuestion].answers.map(
-            ({ answer }, index) => (
+            ({ answer, isCorrect }, index) => (
               <TestVariantCard
                 className={
                   currentAnswer === index
@@ -44,7 +94,7 @@ export const SectionTest = () => {
                 }
                 key={index}
                 text={answer}
-                onClick={() => setCurrentAnswer(index)}
+                onClick={() => handleChooseAnswer(isCorrect, index)}
               />
             )
           )}
@@ -52,7 +102,7 @@ export const SectionTest = () => {
       </div>
       <div className="flex flex-col gap-4">
         <ProgressBar
-          className="bottom-24 left-0 w-full top-auto"
+          className="bottom-24 left-0 w-full duration-500 top-auto"
           value={progress}
         />
         <div className="flex items-center justify-between">
@@ -64,22 +114,37 @@ export const SectionTest = () => {
             />
             Всего осталось: 10:00
           </Container>
-          <div className="flex items-center gap-4">
-            <Button
-              disabled={currentQuestion === 0}
-              className="px-4 py-2"
-              onClick={() => setCurrentQuestion(currentQuestion - 1)}
-            >
-              Предыдущий
-            </Button>
-            <Button
-              disabled={currentQuestion === currentLevelTest.length - 1}
-              className="px-4 py-2"
-              onClick={() => setCurrentQuestion(currentQuestion + 1)}
-            >
-              Следующий
-            </Button>
-          </div>
+          {currentQuestion === currentLevelTest.length - 1 ? (
+            <div className="flex items-center gap-4">
+              <Button
+                disabled={currentQuestion === 0}
+                className="px-4 py-2"
+                onClick={handlePreviousQuestion}
+              >
+                Предыдущий
+              </Button>
+              <Button className="px-4 py-2" onClick={() => setFinishTest(true)}>
+                Завершить
+              </Button>
+            </div>
+          ) : (
+            <div className="flex items-center gap-4">
+              <Button
+                disabled={currentQuestion === 0}
+                className="px-4 py-2"
+                onClick={handlePreviousQuestion}
+              >
+                Предыдущий
+              </Button>
+              <Button
+                disabled={currentQuestion === currentLevelTest.length - 1}
+                className="px-4 py-2"
+                onClick={handleNextQuestion}
+              >
+                Следующий
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </Section>

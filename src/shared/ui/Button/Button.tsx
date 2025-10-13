@@ -8,7 +8,7 @@ interface Props {
   disabled?: boolean;
   href?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "submit" | "button";
   dataTestId?: string;
 }
