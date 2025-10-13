@@ -1,7 +1,7 @@
 import { projects } from "@/shared/model";
 import { sections } from "@/shared/routes";
 
-import { Section, Title, Subtitle, Badge, Button } from "@/shared/ui";
+import { Section, Title, Subtitle, Chip, Button } from "@/shared/ui";
 import Image from "next/image";
 
 export default async function Page({
@@ -18,7 +18,7 @@ export default async function Page({
         <Title>{project.title}</Title>
         <div className="flex gap-2 flex-wrap">
           {project.tags.map((tag, index) => (
-            <Badge key={index} text={tag} />
+            <Chip key={index} text={tag} />
           ))}
         </div>
         <Subtitle className="text-left mb-8">{project.descriptions}</Subtitle>

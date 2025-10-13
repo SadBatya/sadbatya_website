@@ -1,4 +1,4 @@
-import { Title, Badge, Subtitle } from "@/shared/ui";
+import { Title, Chip, Subtitle } from "@/shared/ui";
 import Image from "next/image";
 import Link from "next/link";
 import { internalPath } from "@/shared/routes/routes";
@@ -27,7 +27,7 @@ export const ProjectCard = ({ img, title, subtitle, tags, index }: Props) => (
     <div className="flex flex-col gap-2 px-4">
       <div className="flex items-center flex-wrap gap-1">
         {tags?.splice(0, 3).map((tag, index) => (
-          <Badge key={index} text={tag} />
+          <Chip key={index} text={tag} />
         ))}
       </div>
       <Title className="font-semibold" tag="h4">

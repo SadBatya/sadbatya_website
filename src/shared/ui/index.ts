@@ -1,3 +1,6 @@
+export { LinkButton } from "./LinkButton/LinkButton";
+export { Container } from "./Container/Container";
+export { Tabs } from "./Tabs/Tabs";
 export { ErrorMessage } from "./ErrorMessage/ErrorMessage";
 export { Counter } from "./Counter/Counter";
 export { TypedText } from "./TypedText/TypedText";
@@ -8,6 +11,6 @@ export { Input } from "./Input/Input";
 export { Textarea } from "./Textarea/Textarea";
 export { BurgerButton } from "./BurgerButton/BurgerButton";
 export { StackIcons } from "./StackIcons/ui/StackIcons";
-export { Badge } from "./Badge/Badge";
+export { Chip } from "./Chip/Chip";
 export { Subtitle } from "./Subtitle/Subtitle";
 export { CounterWithButton } from "./CounterWithButton/CounterWithButton";

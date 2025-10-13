@@ -5,7 +5,7 @@ interface Props {
   className?: string;
 }
 
-export const Badge = ({ text, className }: Props) => (
+export const Chip = ({ text, className }: Props) => (
   <span
     className={twMerge(
       "px-2 py-1 text-[10px] rounded-md border text-white",

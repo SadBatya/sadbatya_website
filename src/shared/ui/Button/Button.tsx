@@ -37,7 +37,7 @@ export const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="relative group w-fit"
+      className="relative group w-fit disabled:bg-white/20 disabled:cursor-not-allowed"
     >
       <Content className={twMerge("text-nowrap", className)}>
         {children}

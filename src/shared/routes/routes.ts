@@ -6,10 +6,12 @@ export const internalPath = {
   posts: "/posts",
   contacts: "/contacts",
   mentoring: "/mentoring",
+  simulator: "/simulator",
 };
 
 export const sections = {
   projects: "/#projects",
+  testList: "/#test-list",
 };
 
 export const externalPath = {

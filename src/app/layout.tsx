@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import { Header, Footer, ScrollButton, ProgressBar } from "@/widgets";
+import { ScrollButton } from "@/widgets";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { TanstackProvider } from "@/shared/provider";
 import { ToastContainer } from "react-toastify";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,12 +41,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
         <TanstackProvider>
-          <ProgressBar />
-          <Header />
-          {children}
-          <ScrollButton />
-          <Footer />
-          <ToastContainer />
+          <NuqsAdapter>
+            {children}
+            <ScrollButton />
+            <ToastContainer />
+          </NuqsAdapter>
         </TanstackProvider>
         <Analytics />
         <SpeedInsights />

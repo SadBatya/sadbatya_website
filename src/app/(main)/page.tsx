@@ -5,7 +5,7 @@ import {
   SectionProjects,
   SectionServices,
   SectionForm,
-} from "@/page";
+} from "@/page/main";
 
 export default function Home() {
   return (

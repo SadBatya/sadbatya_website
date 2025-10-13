@@ -1,4 +1,4 @@
-import { Title, Subtitle, Badge, CounterWithButton } from "@/shared/ui";
+import { Title, Subtitle, Chip, CounterWithButton } from "@/shared/ui";
 import { CalculateDiscount } from "@/shared/utils";
 import { useServices } from "@/page/main/section-services/context/Provider";
 import { twMerge } from "tailwind-merge";
@@ -53,11 +53,9 @@ export const ServiceCard = (service: Props) => {
           />
         )}
         <div className="flex items-end justify-end flex-wrap gap-2">
-          {isPopular && (
-            <Badge className="border-green-500" text="Популярный" />
-          )}
+          {isPopular && <Chip className="border-green-500" text="Популярный" />}
           {discount && (
-            <Badge
+            <Chip
               className="border-red-500"
               text={"Скидка " + discount + "%"}
             />

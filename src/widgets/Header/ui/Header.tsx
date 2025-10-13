@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button, BurgerButton, Badge } from "@/shared/ui";
+import { Button, BurgerButton, Chip } from "@/shared/ui";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useBodyScrollLock } from "@/shared/hooks";
@@ -30,7 +30,7 @@ export const Header = () => {
                     href={link}
                   >
                     {text}
-                    {soon === true && <Badge text="Soon" />}
+                    {soon === true && <Chip text="Soon" />}
                   </Link>
                 </li>
               ))}
@@ -60,7 +60,7 @@ export const Header = () => {
                 href={link}
               >
                 {text}
-                {soon === true && <Badge text="Soon" />}
+                {soon === true && <Chip text="Soon" />}
               </Link>
             </li>
           ))}

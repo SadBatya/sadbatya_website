@@ -1,3 +1,5 @@
+"use client";
+
 import { Textarea, Input, Button } from "@/shared/ui";
 import { useCookies } from "@/shared/hooks";
 import { useForm } from "react-hook-form";
