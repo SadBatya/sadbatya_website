@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import { ScrollButton } from "@/widgets";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { TanstackProvider } from "@/shared/provider";
@@ -43,7 +42,6 @@ export default function RootLayout({
         <TanstackProvider>
           <NuqsAdapter>
             {children}
-            <ScrollButton />
             <ToastContainer />
           </NuqsAdapter>
         </TanstackProvider>

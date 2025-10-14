@@ -11,7 +11,7 @@ import {
   Timer,
 } from "@/shared/ui";
 import { testsHh } from "@/shared/model/tests-hh";
-import { ProgressBar } from "@/widgets";
+import { ProgressBar, Modal } from "@/widgets";
 import { TestVariantCard } from "@/entities";
 import { usePathname } from "next/navigation";
 import { useQueryState } from "nuqs";
@@ -22,7 +22,9 @@ export const SectionTest = () => {
   const [currentAnswer, setCurrentAnswer] = useState<number | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<boolean[]>([]);
-  const [finishTest, setFinishTest] = useState(false);
+  const [finishTest, setFinishTest] = useState(true);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const pathname = usePathname();
 
   const [level] = useQueryState("level", {
@@ -61,13 +63,13 @@ export const SectionTest = () => {
 
   if (finishTest) {
     return (
-      <Section className="flex flex-col gap-4 items-center justify-center">
+      <Section className="flex flex-col gap-8 md:gap-4 items-center justify-center">
         <Title tag="h2">Тест завершен</Title>
         <Subtitle className="text-xl">
           Ваш результат: {answers.filter((answer) => answer).length} из{" "}
           {currentLevelTest.questions.length}
         </Subtitle>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-center flex-wrap gap-4">
           <Button className="px-4 py-2" onClick={handleRepeatTest}>
             Попробовать снова
           </Button>
@@ -83,7 +85,21 @@ export const SectionTest = () => {
     <Section className="flex flex-col justify-between py-5">
       <div className="flex items-center justify-between">
         <Title tag="h2">{test.title}</Title>
-        <Button className="px-4 py-2">Завершить</Button>
+        <Button onClick={() => setIsOpenModal(true)}>Завершить</Button>
+        <Modal isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
+          <Title tag="h4">Вы уверены что хотите завершить тест?</Title>
+          <div className="flex items-center gap-4 justify-between">
+            <Button
+              onClick={() => {
+                setFinishTest(true);
+                setIsOpenModal(false);
+              }}
+            >
+              Да
+            </Button>
+            <Button onClick={() => setIsOpenModal(false)}>Нет</Button>
+          </div>
+        </Modal>
       </div>
       <div className="flex flex-col gap-4">
         <Title tag="h4">
@@ -108,10 +124,10 @@ export const SectionTest = () => {
       </div>
       <div className="flex flex-col gap-4">
         <ProgressBar
-          className="bottom-24 left-0 w-full duration-500 top-auto"
+          className="bottom-32 md:bottom-24 left-0 w-full duration-500 top-auto"
           value={progress}
         />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center flex-wrap gap-4 justify-center md:justify-between">
           <Container className="flex items-center gap-4">
             <Chip
               text={
@@ -129,6 +145,7 @@ export const SectionTest = () => {
               onTimeUp={() => setFinishTest(true)}
             />
           </Container>
+          {/* TODO: Изменить условный рендеринг */}
           {currentQuestion === currentLevelTest.questions.length - 1 ? (
             <div className="flex items-center gap-4">
               <Button

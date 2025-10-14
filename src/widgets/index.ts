@@ -1,4 +1,5 @@
-export { ShowTimerToast } from './ShowTimerToast/ShowtTImerToast';
+export { Modal } from "./Modal/Modal";
+export { ShowTimerToast } from "./ShowTimerToast/ShowtTImerToast";
 export { ProgressBar } from "./ProgressBar/ProgressBar";
 export { ScrollButton } from "./ScrollButton/ScrollButton";
 export { Footer } from "./Footer/Footer";

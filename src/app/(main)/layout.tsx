@@ -1,4 +1,4 @@
-import { Header, Footer, ProgressBar } from "@/widgets";
+import { Header, Footer, ProgressBar, ScrollButton } from "@/widgets";
 
 export default function RootLayout({
   children,
@@ -10,6 +10,7 @@ export default function RootLayout({
       <ProgressBar />
       <Header />
       {children}
+      <ScrollButton />
       <Footer />
     </>
   );

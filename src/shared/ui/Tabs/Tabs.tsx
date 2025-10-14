@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Tabs = ({ tabs, query, className }: Props) => (
-  <div className={twMerge("flex items-center gap-4", className)}>
+  <div className={twMerge("flex items-center gap-1.5 md:gap-4", className)}>
     {tabs.map(({ title, onClick }, index) => (
       <button
         className={twMerge(

@@ -48,7 +48,7 @@ export const SectionHero = () => {
     testsHh[currentTestName].levels[level as "base" | "medium" | "advanced"];
 
   return (
-    <Section className="flex flex-col gap-4 items-start py-10">
+    <Section className="flex flex-col gap-4 h-full md:h-dvh items-start py-10">
       <Title>{currentTestInfo.title}</Title>
       <Tabs tabs={tabs} query={changeLanguageLevel(level)} />
       <p className="rounded-md bg-white/10 p-4 max-w-2xl">
@@ -79,7 +79,7 @@ export const SectionHero = () => {
             level: level,
           },
         }}
-        className="px-4 py-2 mb-8"
+        className="px-4 py-2 mb-8 mx-auto md:mx-0"
       >
         Начать тест
       </LinkButton>
