@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const SectionHero = () => (
   <Section className="h-[calc(100dvh-105px)] w-screen flex flex-col gap-4 items-center justify-center">
-    <Title className="flex items-center gap-4">
+    <Title className="flex items-center gap-4 flex-wrap-reverse justify-center">
       Тренажер по навыкам и языкам{" "}
       <Image src="/hh.png" height={60} width={60} alt="head hunter logo" />
     </Title>
