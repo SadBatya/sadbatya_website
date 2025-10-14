@@ -1,3 +1,4 @@
+export { Timer } from "./Timer/Timer";
 export { LinkButton } from "./LinkButton/LinkButton";
 export { Container } from "./Container/Container";
 export { Tabs } from "./Tabs/Tabs";

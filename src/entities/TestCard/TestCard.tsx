@@ -4,7 +4,7 @@ import { internalPath } from "@/shared/routes";
 
 interface Props {
   title: string;
-  chips: readonly ("Теория" | "Практика")[];
+  chips: ("Теория" | "Практика")[];
   link: string;
 }
 

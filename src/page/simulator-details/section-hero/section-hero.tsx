@@ -3,8 +3,8 @@
 import { Section, Title, Tabs, Container, LinkButton } from "@/shared/ui";
 import { useQueryState } from "nuqs";
 import Image from "next/image";
-import { testDetails } from "../model/data";
 import { usePathname } from "next/navigation";
+import { testsHh } from "@/shared/model/tests-hh";
 
 export const SectionHero = () => {
   const pathname = usePathname();
@@ -43,9 +43,9 @@ export const SectionHero = () => {
     }
   };
 
-  const currentTestInfo = testDetails[currentTestName];
+  const currentTestInfo = testsHh[currentTestName];
   const curentTestLevel =
-    testDetails[currentTestName][level as "base" | "medium" | "advanced"];
+    testsHh[currentTestName].levels[level as "base" | "medium" | "advanced"];
 
   return (
     <Section className="flex flex-col gap-4 items-start py-10">
@@ -57,11 +57,11 @@ export const SectionHero = () => {
       <Container className="max-w-2xl w-full flex items-center gap-4">
         <span className="flex items-center gap-2">
           <Image src="/timer.svg" alt="timer" width={24} height={24} />
-          {curentTestLevel.time}
+          {curentTestLevel.time} минут
         </span>
         <span className="flex items-center gap-2">
           <Image src="/list.svg" alt="list" width={24} height={24} />
-          {curentTestLevel.questions}
+          {curentTestLevel.count} вопросов
         </span>
       </Container>
       <Container className="max-w-2xl w-full flex flex-col gap-4 mb-8">
