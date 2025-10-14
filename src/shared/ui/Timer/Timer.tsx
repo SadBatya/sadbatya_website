@@ -8,14 +8,16 @@ interface Props {
   minutes: number;
   onTimeUp: () => void;
   className?: string;
+  pause?: boolean;
 }
 
-export const Timer = ({ minutes, onTimeUp, className }: Props) => {
+export const Timer = ({ minutes, onTimeUp, className, pause }: Props) => {
   const [time, setTime] = useState(minutes * 60);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTime((prevTime) => {
+        if (pause) return prevTime;
         if (prevTime <= 1) {
           clearInterval(timer);
           onTimeUp();
@@ -26,7 +28,7 @@ export const Timer = ({ minutes, onTimeUp, className }: Props) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [onTimeUp]);
+  }, [onTimeUp, pause]);
 
   const formatTime = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);

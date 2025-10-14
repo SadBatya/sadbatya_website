@@ -24,7 +24,7 @@ export const Modal = ({ children, onClose, isOpen, modalClassName }: Props) => (
     <div className="flex items-center justify-center h-full">
       <div
         className={twMerge(
-          "bg-black p-4 w-[(calc(100%-40px))] flex flex-col gap-8",
+          "bg-black p-4 max-w-[calc(100%-40px)] border border-white/80 rounded-md flex flex-col gap-8",
           modalClassName
         )}
       >

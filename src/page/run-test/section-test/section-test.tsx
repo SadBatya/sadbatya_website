@@ -141,6 +141,7 @@ export const SectionTest = () => {
             />
             Всего осталось:{" "}
             <Timer
+              pause={isOpenModal}
               minutes={currentLevelTest.time}
               onTimeUp={() => setFinishTest(true)}
             />
