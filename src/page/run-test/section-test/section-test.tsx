@@ -22,7 +22,7 @@ export const SectionTest = () => {
   const [currentAnswer, setCurrentAnswer] = useState<number | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<boolean[]>([]);
-  const [finishTest, setFinishTest] = useState(true);
+  const [finishTest, setFinishTest] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const pathname = usePathname();
