@@ -12,7 +12,7 @@ import { FormSendCompleted } from "@/widgets";
 const schema = z.object({
   name: zodSсhemes.name,
   telegram: zodSсhemes.telegram,
-  textarea: zodSсhemes.textarea,
+  message: zodSсhemes.textarea,
 });
 
 export const SendApplication = () => {
@@ -65,7 +65,7 @@ export const SendApplication = () => {
         type="text"
       />
       <Textarea
-        {...register("textarea")}
+        {...register("message")}
         dataTestId="application-form-description"
         placeholder="Сообщение..."
         name="message"

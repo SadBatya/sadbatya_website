@@ -3,11 +3,11 @@ import axios from "axios";
 interface ICreateOrder {
   name: string;
   telegram: string;
-  textarea?: string;
+  message?: string;
 }
 
 export const sendApplication = (order: ICreateOrder) => {
-  const response = axios.post("api/send-application", order);
+  const response = axios.post("/api/send-application", order);
 
   return response;
 };

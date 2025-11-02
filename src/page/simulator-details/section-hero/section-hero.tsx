@@ -5,10 +5,20 @@ import { useQueryState } from "nuqs";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { testsHh } from "@/shared/model/tests-hh";
+import { type Level } from "@/shared/lib";
+import { useGetCurrentTestDescription } from "@/shared/api/hooks";
+import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export const SectionHero = () => {
   const pathname = usePathname();
+  const params = useParams()
+  const searchParams = useSearchParams()
 
+  const {data} = useGetCurrentTestDescription(params.slug as string, searchParams.get('level') as Level)
+
+  console.log(data)
+  
   const currentTestName = pathname.split("/")[2];
 
   const [level, setLevel] = useQueryState("level", {
@@ -18,25 +28,25 @@ export const SectionHero = () => {
   const tabs = [
     {
       title: "Базовый",
-      onClick: () => setLevel("base"),
+      onClick: () => setLevel("EASY"),
     },
     {
       title: "Средний",
-      onClick: () => setLevel("medium"),
+      onClick: () => setLevel("MEDIUM"),
     },
     {
       title: "Продвинутый",
-      onClick: () => setLevel("advanced"),
+      onClick: () => setLevel("HARD"),
     },
   ];
 
-  const changeLanguageLevel = (level: string) => {
-    switch (true) {
-      case level === "base":
+  const changeLevelTitle = (level: string) => {
+    switch (level) {
+      case "EASY":
         return "Базовый";
-      case level === "medium":
+      case "MEDIUM":
         return "Средний";
-      case level === "advanced":
+      case "HARD":
         return "Продвинутый";
       default:
         return "Базовый";
@@ -45,12 +55,12 @@ export const SectionHero = () => {
 
   const currentTestInfo = testsHh[currentTestName];
   const curentTestLevel =
-    testsHh[currentTestName].levels[level as "base" | "medium" | "advanced"];
+    testsHh[currentTestName].levels[level as Level];
 
   return (
     <Section className="flex flex-col gap-4 h-full md:h-dvh items-start py-10">
       <Title>{currentTestInfo.title}</Title>
-      <Tabs tabs={tabs} query={changeLanguageLevel(level)} />
+      <Tabs tabs={tabs} query={changeLevelTitle(level)} />
       <p className="rounded-md bg-white/10 p-4 max-w-2xl">
         {currentTestInfo.description}
       </p>

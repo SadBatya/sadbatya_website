@@ -1,3 +1,5 @@
+import { type Level } from "@/shared/lib";
+
 export interface TestAnswer {
   answer: string;
   isCorrect: boolean;
@@ -16,9 +18,9 @@ export interface TestLevel {
 }
 
 export interface TestLevels {
-  base: TestLevel;
-  medium: TestLevel;
-  advanced: TestLevel;
+  EASY: TestLevel;
+  MEDIUM: TestLevel;
+  HARD: TestLevel;
 }
 
 export interface Test {
@@ -27,7 +29,7 @@ export interface Test {
   description: string;
   link: string;
   chips: ("Теория" | "Практика")[];
-  levels: TestLevels;
+  levels: Record<Level, TestLevel>;
 }
 
 export interface ITestsData {
@@ -43,7 +45,7 @@ export const testsHh: ITestsData = {
     link: "/html",
     chips: ["Теория"],
     levels: {
-      base: {
+      EASY: {
         time: 10,
         count: 10,
         about: [
@@ -108,7 +110,7 @@ export const testsHh: ITestsData = {
           },
         ],
       },
-      medium: {
+      MEDIUM: {
         time: 18,
         count: 12,
         about: [
@@ -128,7 +130,7 @@ export const testsHh: ITestsData = {
           },
         ],
       },
-      advanced: {
+      HARD: {
         time: 23,
         count: 15,
         about: [
@@ -158,7 +160,7 @@ export const testsHh: ITestsData = {
     link: "/css",
     chips: ["Теория"],
     levels: {
-      base: {
+      EASY: {
         time: 10,
         count: 10,
         about: [
@@ -178,7 +180,7 @@ export const testsHh: ITestsData = {
           },
         ],
       },
-      medium: {
+      MEDIUM: {
         time: 18,
         count: 12,
         about: [
@@ -198,7 +200,7 @@ export const testsHh: ITestsData = {
           },
         ],
       },
-      advanced: {
+      HARD: {
         time: 23,
         count: 15,
         about: [
