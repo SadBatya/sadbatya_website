@@ -17,10 +17,10 @@ model TestCard {
 }
 
 model TestPage {
-  id        Int        @id @default(autoincrement())
+  id        Int         @id @default(autoincrement())
   title     String
   Question  Question?
-  TestAbout TestAbout?
+  TestAbout TestAbout[]
 }
 
 model TestAbout {
@@ -28,7 +28,8 @@ model TestAbout {
   level         Level    @default(EASY)
   time          Int
   questionCount Int      @map("question_count")
-  testPageId    Int      @unique
+  testPageId    Int
+  about         String[]
   testPage      TestPage @relation(fields: [testPageId], references: [id])
 }
 
@@ -36,6 +37,7 @@ model Question {
   id         Int      @id @default(autoincrement())
   question   String
   testPageId Int      @unique
+  level      Level    @default(EASY)
   answers    Answer[]
   testPage   TestPage @relation(fields: [testPageId], references: [id])
 }

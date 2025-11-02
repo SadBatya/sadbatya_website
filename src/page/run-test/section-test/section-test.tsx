@@ -13,31 +13,46 @@ import {
 import { testsHh } from "@/shared/model/tests-hh";
 import { ProgressBar, Modal } from "@/widgets";
 import { TestVariantCard } from "@/entities";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useQueryState } from "nuqs";
 import { useState } from "react";
 import { internalPath } from "@/shared/routes";
+import {
+  useGetQuestions,
+  useGetCurrentTestDescription,
+} from "@/shared/api/hooks";
+import { type Level } from "@/shared/lib";
 
 export const SectionTest = () => {
+  const params = useParams();
+  const searchParams = useSearchParams();
+
   const [currentAnswer, setCurrentAnswer] = useState<number | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<boolean[]>([]);
   const [finishTest, setFinishTest] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
+  const { data: testAbout, isLoading: testAboutLoading } =
+    useGetCurrentTestDescription(
+      params.slug as string,
+      searchParams.get("level") as Level
+    );
+
+  const { data: questions, isLoading: questionsLoading } = useGetQuestions(
+    params.slug as string,
+    searchParams.get("level") as Level,
+    5
+  );
+
+  console.log(questions, "questions");
+  console.log(testAbout, "test about");
+
   const pathname = usePathname();
 
-  const [level] = useQueryState("level", {
-    defaultValue: "base",
-  });
-
   const test = testsHh[pathname.split("/")[2]];
-  const currentLevelTest =
-    testsHh[pathname.split("/")[2]].levels[
-      level as "base" | "medium" | "advanced"
-    ];
 
-  const progress = (currentQuestion + 1) / currentLevelTest.questions.length;
+  const progress = (currentQuestion + 1) / testAbout?.questionCount;
 
   const handleChooseAnswer = (answer: boolean, index: number) => {
     setAnswers((prev) => [...prev.slice(0, currentQuestion), answer]);
@@ -61,13 +76,17 @@ export const SectionTest = () => {
     setCurrentAnswer(null);
   };
 
+  if (testAboutLoading && questionsLoading) {
+    return <div>Идет загрузка тестов...</div>;
+  }
+
   if (finishTest) {
     return (
       <Section className="flex flex-col gap-8 md:gap-4 items-center justify-center">
         <Title tag="h2">Тест завершен</Title>
         <Subtitle className="text-xl">
           Ваш результат: {answers.filter((answer) => answer).length} из{" "}
-          {currentLevelTest.questions.length}
+          {testAbout?.questionCount}
         </Subtitle>
         <div className="flex items-center justify-center flex-wrap gap-4">
           <Button className="px-4 py-2" onClick={handleRepeatTest}>
@@ -103,23 +122,24 @@ export const SectionTest = () => {
       </div>
       <div className="flex flex-col gap-4">
         <Title tag="h4">
-          {currentLevelTest.questions[currentQuestion].question}
+          {questions?.length > 0 && questions[currentQuestion]?.question}
         </Title>
         <ul className="flex flex-col gap-4">
-          {currentLevelTest.questions[currentQuestion].answers.map(
-            ({ answer, isCorrect }, index) => (
-              <TestVariantCard
-                className={
-                  currentAnswer === index
-                    ? "border-white/80 scale-101 bg-white/10"
-                    : ""
-                }
-                key={index}
-                text={answer}
-                onClick={() => handleChooseAnswer(isCorrect, index)}
-              />
-            )
-          )}
+          {questions?.length > 0 &&
+            questions[currentQuestion]?.answers.map(
+              ({ answer, isCorrect }, index) => (
+                <TestVariantCard
+                  className={
+                    currentAnswer === index
+                      ? "border-white/80 scale-101 bg-white/10"
+                      : ""
+                  }
+                  key={index}
+                  text={answer}
+                  onClick={() => handleChooseAnswer(isCorrect, index)}
+                />
+              )
+            )}
         </ul>
       </div>
       <div className="flex flex-col gap-4">
@@ -136,18 +156,18 @@ export const SectionTest = () => {
                 " " +
                 "из" +
                 " " +
-                currentLevelTest.questions.length
+                testAbout?.questionCount
               }
             />
             Всего осталось:{" "}
             <Timer
               pause={isOpenModal}
-              minutes={currentLevelTest.time}
+              minutes={testAbout?.time || 0}
               onTimeUp={() => setFinishTest(true)}
             />
           </Container>
           {/* TODO: Изменить условный рендеринг */}
-          {currentQuestion === currentLevelTest.questions.length - 1 ? (
+          {currentQuestion === testAbout?.questionCount ? (
             <div className="flex items-center gap-4">
               <Button
                 disabled={currentQuestion === 0}
@@ -170,9 +190,7 @@ export const SectionTest = () => {
                 Предыдущий
               </Button>
               <Button
-                disabled={
-                  currentQuestion === currentLevelTest.questions.length - 1
-                }
+                disabled={currentQuestion === testAbout?.questionCount}
                 className="px-4 py-2"
                 onClick={handleNextQuestion}
               >

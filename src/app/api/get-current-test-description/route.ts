@@ -28,7 +28,6 @@ export async function GET(req: NextRequest) {
         }
       }
     });
-    console.log(test, 'test')
 
     if (!test) {
       return NextResponse.json(

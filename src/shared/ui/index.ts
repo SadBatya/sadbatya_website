@@ -15,3 +15,4 @@ export { StackIcons } from "./StackIcons/ui/StackIcons";
 export { Chip } from "./Chip/Chip";
 export { Subtitle } from "./Subtitle/Subtitle";
 export { CounterWithButton } from "./CounterWithButton/CounterWithButton";
+export { Skeleton } from "./Skeleton/Skeleton";
