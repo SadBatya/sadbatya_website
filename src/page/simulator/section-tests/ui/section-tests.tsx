@@ -1,43 +1,34 @@
-"use client";
 import { Section, Title, Subtitle } from "@/shared/ui";
-import { useGetTests } from "@/shared/api/hooks";
 import { TestCard } from "@/entities";
 
-export const SectionTests = () => {
-  const { data, isLoading, isError } = useGetTests();
+interface ITestCard {
+  id: number;
+  title: string;
+  link: string;
+  chips: ("Теория" | "Практика")[];
+}
 
-  if (isLoading) {
-    return (
-      <Section height="full" className="flex flex-col gap-4">
-        <Title tag="h2">Список доступных тестов</Title>
-        <Subtitle className="mb-8">Загрузка...</Subtitle>
-      </Section>
-    );
+export const SectionTests = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/get-tests`,
+    {
+      next: { revalidate: 600 },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Ошибка загрузки тестов");
   }
 
-  if (isError) {
-    return (
-      <Section height="full" className="flex flex-col gap-4">
-        <Title tag="h2">Список доступных тестов</Title>
-        <Subtitle className="mb-8">Ошибка загрузки</Subtitle>
-      </Section>
-    );
-  }
-
-  const tests = data ?? [];
+  const data: ITestCard[] = await response.json();
 
   return (
     <Section height="full" className="flex flex-col gap-4">
       <Title tag="h2">Список доступных тестов</Title>
       <Subtitle className="mb-8">Выберите тест из списка</Subtitle>
       <div className="grid md:grid-cols-4 gap-4 items-stretch">
-        {tests.map((item: { id: number; title: string; link: string; chips: string[] }) => (
-          <TestCard
-            title={item.title}
-            link={item.link}
-            chips={item.chips as ("Теория" | "Практика")[]}
-            key={item.id}
-          />
+        {data.map(({ title, link, chips, id }) => (
+          <TestCard title={title} link={link} chips={chips} key={id} />
         ))}
       </div>
     </Section>

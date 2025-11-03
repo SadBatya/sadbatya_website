@@ -6,7 +6,8 @@ export async function GET(req: NextRequest) {
   const title = searchParams.get("title") as string;
   const level = searchParams.get("level") as Level;
   const take = searchParams.get("take");
-  const randomSkip = Math.floor(Math.random() * Number(take));
+  // TODO: Вернуть randomSkip для вопросов
+  // const randomSkip = Math.floor(Math.random() * Number(take));
 
   if (!title || !level || !take) {
     return NextResponse.json(

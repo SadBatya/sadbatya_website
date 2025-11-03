@@ -14,7 +14,6 @@ import { testsHh } from "@/shared/model/tests-hh";
 import { ProgressBar, Modal } from "@/widgets";
 import { TestVariantCard } from "@/entities";
 import { useParams, usePathname, useSearchParams } from "next/navigation";
-import { useQueryState } from "nuqs";
 import { useState } from "react";
 import { internalPath } from "@/shared/routes";
 import {
@@ -44,15 +43,13 @@ export const SectionTest = () => {
     searchParams.get("level") as Level,
     5
   );
-
-  console.log(questions, "questions");
-  console.log(testAbout, "test about");
+  console.log(questions, "вопросы");
 
   const pathname = usePathname();
 
   const test = testsHh[pathname.split("/")[2]];
 
-  const progress = (currentQuestion + 1) / testAbout?.questionCount;
+  const progress = (currentQuestion + 1) / (testAbout?.questionCount ?? 1);
 
   const handleChooseAnswer = (answer: boolean, index: number) => {
     setAnswers((prev) => [...prev.slice(0, currentQuestion), answer]);
@@ -122,10 +119,13 @@ export const SectionTest = () => {
       </div>
       <div className="flex flex-col gap-4">
         <Title tag="h4">
-          {questions?.length > 0 && questions[currentQuestion]?.question}
+          {questions &&
+            questions?.length > 0 &&
+            questions[currentQuestion]?.question}
         </Title>
         <ul className="flex flex-col gap-4">
-          {questions?.length > 0 &&
+          {questions &&
+            questions?.length > 0 &&
             questions[currentQuestion]?.answers.map(
               ({ answer, isCorrect }, index) => (
                 <TestVariantCard

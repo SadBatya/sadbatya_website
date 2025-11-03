@@ -23,11 +23,11 @@ export const SectionHero = () => {
 
   const { data: test, isLoading } = useGetCurrentTestDescription(
     params.slug as string,
-    searchParams.get("level") as Level
+    (searchParams.get("level") as Level) ?? "EASY"
   );
 
   const [level, setLevel] = useQueryState("level", {
-    defaultValue: "base",
+    defaultValue: "EASY",
   });
 
   const tabs = [
