@@ -7,6 +7,7 @@ export const internalPath = {
   contacts: "/contacts",
   mentoring: "/mentoring",
   simulator: "/simulator",
+  simulatorImprove: "/simulator/improve",
 };
 
 export const sections = {
@@ -18,4 +19,6 @@ export const externalPath = {
   telegram: "https://t.me/SadBatya",
   telegramChannel: "https://t.me/sadbatyainit",
   github: "https://github.com/SadBatya",
+  hh: "https://hh.ru/",
+  hhTests: "https://hh.ru/applicant/skill_verifications/methods",
 };

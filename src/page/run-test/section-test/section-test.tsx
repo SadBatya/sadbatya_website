@@ -9,6 +9,7 @@ import {
   Subtitle,
   LinkButton,
   Timer,
+  Skeleton,
 } from "@/shared/ui";
 import { testsHh } from "@/shared/model/tests-hh";
 import { ProgressBar, Modal } from "@/widgets";
@@ -31,6 +32,7 @@ export const SectionTest = () => {
   const [answers, setAnswers] = useState<boolean[]>([]);
   const [finishTest, setFinishTest] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenPreviewModal, setIsOpenPreviewModal] = useState(false); // TODO: вернуть на true по дефолту для открытие модалки перед стартом теста
 
   const { data: testAbout, isLoading: testAboutLoading } =
     useGetCurrentTestDescription(
@@ -43,7 +45,6 @@ export const SectionTest = () => {
     searchParams.get("level") as Level,
     5
   );
-  console.log(questions, "вопросы");
 
   const pathname = usePathname();
 
@@ -74,7 +75,50 @@ export const SectionTest = () => {
   };
 
   if (testAboutLoading && questionsLoading) {
-    return <div>Идет загрузка тестов...</div>;
+    return (
+      <Section className="flex flex-col justify-between py-5">
+        <div className="flex items-center justify-between">
+          <Skeleton className="w-40 h-[60px]" />
+          <Skeleton className="w-40 h-[33px]" />
+        </div>
+        <div className="flex flex-col gap-4">
+          <Skeleton className="w-40 h-[40px]" />
+          <ul className="flex flex-col gap-4">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <Skeleton className="w-full h-[58px]" key={index} />
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-col gap-4">
+          <ProgressBar
+            className="bottom-32 md:bottom-24 left-0 w-full duration-500 top-auto"
+            value={progress}
+          />
+          <div className="flex items-center flex-wrap gap-4 justify-center md:justify-between">
+            <Container className="flex items-center gap-4">
+              <Skeleton className="w-16 h-[30px]" />
+              Всего осталось: <Skeleton className="w-16 h-[30px]" />
+            </Container>
+            <div className="flex items-center gap-4">
+              <Skeleton className="w-40 h-[33px]" />
+              <Skeleton className="w-40 h-[33px]" />
+            </div>
+          </div>
+        </div>
+      </Section>
+    );
+  }
+
+  if (questions?.length === 0) {
+    return (
+      <Section className="flex flex-col items-center gap-4 justify-center">
+        <Title>К сожалению для данной темы вопросы отсутствуют :c</Title>
+        <Title tag="h3">
+          Но именно ты можешь помочь улучшить базу вопросов
+        </Title>
+        <LinkButton href={internalPath.simulatorImprove}>Инструкция</LinkButton>
+      </Section>
+    );
   }
 
   if (finishTest) {
@@ -99,6 +143,22 @@ export const SectionTest = () => {
 
   return (
     <Section className="flex flex-col justify-between py-5">
+      {isOpenPreviewModal && (
+        <Modal
+          modalClassName="items-center max-w-[400px]"
+          isOpen={isOpenPreviewModal}
+          onClose={() => setIsOpenPreviewModal(false)}
+        >
+          <Title tag="h3">{test.title}</Title>
+          <p className="text-center">
+            Перед началом теста убедитесь что нет отвлекающих факторов :)
+          </p>
+          <Button onClick={() => setIsOpenPreviewModal(false)}>
+            Начать тест
+          </Button>
+        </Modal>
+      )}
+
       <div className="flex items-center justify-between">
         <Title tag="h2">{test.title}</Title>
         <Button onClick={() => setIsOpenModal(true)}>Завершить</Button>
@@ -144,7 +204,7 @@ export const SectionTest = () => {
       </div>
       <div className="flex flex-col gap-4">
         <ProgressBar
-          className="bottom-32 md:bottom-24 left-0 w-full duration-500 top-auto"
+          className="bottom-32 md:bottom-24 left-0 z-1 w-full duration-500 top-auto"
           value={progress}
         />
         <div className="flex items-center flex-wrap gap-4 justify-center md:justify-between">
@@ -161,7 +221,7 @@ export const SectionTest = () => {
             />
             Всего осталось:{" "}
             <Timer
-              pause={isOpenModal}
+              pause={isOpenModal || isOpenPreviewModal}
               minutes={testAbout?.time || 0}
               onTimeUp={() => setFinishTest(true)}
             />

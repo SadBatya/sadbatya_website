@@ -15,7 +15,7 @@ export const Modal = ({ children, onClose, isOpen, modalClassName }: Props) => (
       onClose();
     }}
     className={twMerge(
-      "fixed top-0 left-0 right-0 bottom-0 z-50 bg-black/50",
+      "fixed top-0 left-0 right-0 bottom-0 backdrop-blur-sm z-50 bg-black/50",
       isOpen
         ? "opacity-100 pointer-events-auto"
         : "opacity-0 pointer-events-none"
