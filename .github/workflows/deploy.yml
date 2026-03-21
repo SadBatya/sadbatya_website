@@ -79,7 +79,7 @@ jobs:
             echo '🎉 Deploy success!'
           "
 
-      - name: Send Telegram success
+      - name: Send Telegram notification on success
         if: success()
         run: |
           curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
@@ -87,7 +87,7 @@ jobs:
             -d text="✅ *Деплой успешно завершен!*%0A%0A📦 *Проект:* ${{ github.repository }}%0A🌿 *Ветка:* ${{ github.ref_name }}%0A🕐 *Время:* $(date '+%Y-%m-%d %H:%M:%S')%0A🔗 *Commit:* ${{ github.sha }}" \
             -d parse_mode="Markdown"
 
-      - name: Send Telegram failure
+      - name: Send Telegram notification on failure
         if: failure()
         run: |
           curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
