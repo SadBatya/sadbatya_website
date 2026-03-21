@@ -84,7 +84,7 @@ jobs:
         run: |
           curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
             -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-            -d text="✅ *Деплой успешно завершен!*%0A%0A📦 *Проект:* ${{ github.repository }}%0A🌿 *Ветка:* ${{ github.ref_name }}%0A🕐 *Время:* $(date '+%Y-%m-%d %H:%M:%S')%0A🔗 *Commit:* ${{ github.sha }}" \
+            -d text="✅ *Деплой успешно завершен!*%0A%0A📦 *Проект:* ${{ secrets.WEBSITE }}%0A🌿 *Ветка:* ${{ github.ref_name }}%0A🕐 *Время:* $(date '+%Y-%m-%d %H:%M:%S')%0A🔗 *Commit:* ${{ github.sha }}" \
             -d parse_mode="Markdown"
 
       - name: Send Telegram notification on failure
@@ -92,5 +92,5 @@ jobs:
         run: |
           curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
             -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
-            -d text="❌ *Деплой провалился!*%0A%0A📦 *Проект:* ${{ github.repository }}%0A🌿 *Ветка:* ${{ github.ref_name }}%0A🕐 *Время:* $(date '+%Y-%m-%d %H:%M:%S')%0A🔗 *Commit:* ${{ github.sha }}" \
+            -d text="❌ *Деплой провалился!*%0A%0A📦 *Проект:* ${{ secrets.WEBSITE }}%0A🌿 *Ветка:* ${{ github.ref_name }}%0A🕐 *Время:* $(date '+%Y-%m-%d %H:%M:%S')%0A🔗 *Commit:* ${{ github.sha }}" \
             -d parse_mode="Markdown"
