@@ -6,22 +6,36 @@ import { useForm } from "react-hook-form";
 import { zodSсhemes } from "@/shared/zod-schemes";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSendMessage } from "@/shared/api/hooks";
+import { useSendFormQuestions } from "@/shared/api/hooks";
 import { FormSendCompleted } from "@/widgets";
 
 const schema = z.object({
   name: zodSсhemes.name,
   telegram: zodSсhemes.telegram,
+  test: z
+    .string()
+    .min(2, "Минимум 2 символа")
+    .max(20, "Максимум 50 символов")
+    .nonempty(),
+  level: z
+    .string()
+    .min(2, "Минимум 2 символа")
+    .max(20, "Максимум 50 символов")
+    .nonempty(),
   message: zodSсhemes.textarea,
 });
 
-export const SendApplication = () => {
+export const SendQuestions = () => {
   const { value: formStateCookie, setCookie: setFormStateCookie } = useCookies(
     "main-form",
     ""
   );
 
-  const { mutation: sendMessage, isPending, isSuccess } = useSendMessage();
+  const {
+    mutation: sendFormQuestions,
+    isPending,
+    isSuccess,
+  } = useSendFormQuestions();
 
   const {
     register,
@@ -32,7 +46,7 @@ export const SendApplication = () => {
   });
 
   const onSubmit = handleSubmit((data) => {
-    sendMessage(data);
+    sendFormQuestions(data);
 
     if (isSuccess) {
       setFormStateCookie("true", 1);
@@ -64,10 +78,26 @@ export const SendApplication = () => {
         name="telegram"
         type="text"
       />
+      <Input
+        {...register("test")}
+        dataTestId="application-form-test"
+        error={errors.test?.message}
+        placeholder="Название теста..."
+        name="test"
+        type="text"
+      />
+      <Input
+        {...register("level")}
+        dataTestId="application-form-level"
+        error={errors.level?.message}
+        placeholder="Уровень сложности..."
+        name="level"
+        type="text"
+      />
       <Textarea
         {...register("message")}
         dataTestId="application-form-description"
-        placeholder="Сообщение..."
+        placeholder="Дополнительная информация..."
         name="message"
       />
       <Button

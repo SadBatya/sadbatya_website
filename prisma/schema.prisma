@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model TestCard {
+  id          Int      @id @default(autoincrement())
+  title       String
+  chips       String[]
+  link        String
+  isPublished Boolean  @default(true) @map("is_published")
+}
+
+model TestPage {
+  id        Int         @id @default(autoincrement())
+  title     String
+  Question  Question?
+  TestAbout TestAbout[]
+}
+
+model TestAbout {
+  id            Int      @id @default(autoincrement())
+  level         Level    @default(EASY)
+  time          Int
+  questionCount Int      @map("question_count")
+  testPageId    Int
+  about         String[]
+  testPage      TestPage @relation(fields: [testPageId], references: [id])
+}
+
+model Question {
+  id         Int      @id @default(autoincrement())
+  question   String
+  testPageId Int      @unique
+  level      Level    @default(EASY)
+  answers    Answer[]
+  testPage   TestPage @relation(fields: [testPageId], references: [id])
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  answer     String
+  isCorrect  Boolean  @map("is_correct")
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
+}
+
+enum Level {
+  EASY
+  MEDIUM
+  HARD
+}

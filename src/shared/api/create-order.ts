@@ -9,7 +9,7 @@ interface ICreateOrder {
 }
 
 export const createOrder = (order: ICreateOrder) => {
-  const response = axios.post("api/create-order", order);
+  const response = axios.post("/api/create-order", order);
 
   return response;
 };
