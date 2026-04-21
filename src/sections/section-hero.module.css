@@ -1,0 +1,38 @@
+.section {
+  height: calc(100dvh - 95px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.results {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.splitter {
+  height: 100%;
+  width: 1px;
+  background-color: var(--border-color);
+}

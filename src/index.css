@@ -3,3 +3,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --backround-color: #4a5167;
+  --color-text: #f1f4fe;
+  --border-color: #dce4f5;
+  --color-white: #ffffff;
+}
+
+body {
+  background-color: var(--backround-color);
+  color: var(--color-text);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+button {
+  transition: all 0.3s;
+}
