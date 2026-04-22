@@ -1,12 +1,11 @@
 import "@mantine/core/styles.css";
 import "./index.css";
-import { Header } from "./widgets";
+import { Header, Footer } from "./widgets";
 import {
   MantineProvider,
   createTheme,
   type MantineColorsTuple,
 } from "@mantine/core";
-import { Container } from "./shared/ui";
 import { Outlet } from "react-router";
 
 const myColor: MantineColorsTuple = [
@@ -31,9 +30,8 @@ const theme = createTheme({
 
 export const Layout = () => (
   <MantineProvider theme={theme}>
-    <Container>
-      <Header />
-      <Outlet />
-    </Container>
+    <Header />
+    <Outlet />
+    <Footer />
   </MantineProvider>
 );

@@ -1,0 +1,52 @@
+.section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.projects {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.project_card {
+  border: 1px solid white;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #63687c;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-align: left;
+}
+
+.project_card:hover {
+  transform: scale(1.05);
+}
+
+.project_img {
+  transition: filter 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.project_img:hover {
+  filter: grayscale(0%);
+}
+
+.project_info {
+  padding: 12px;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.project_card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}

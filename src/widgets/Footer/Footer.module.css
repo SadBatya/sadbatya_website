@@ -1,0 +1,26 @@
+.footer {
+  border-top: 1px solid white;
+}
+
+.footer_inner {
+  max-width: 1440px;
+  width: calc(100% - 32px);
+  padding: 20px 40px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .footer_inner {
+    width: calc(100% - 16px);
+    padding: 20px;
+  }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

@@ -1,5 +1,5 @@
 import style from "./section-hero.module.css";
-import { Title, Button } from "@mantine/core";
+import { Title, Button, Divider } from "@mantine/core";
 import { PiBriefcase, PiHandshakeFill } from "react-icons/pi";
 import { Fragment } from "react/jsx-runtime";
 import { Socials, Section } from "@/shared/ui";
@@ -39,7 +39,7 @@ export const SectionHero = () => (
             <Title size="h2">{value}</Title>
             <p>{label}</p>
           </div>
-          {index < 2 && <span className={style.splitter} />}
+          {index < 2 && <Divider orientation="vertical" />}
         </Fragment>
       ))}
     </div>

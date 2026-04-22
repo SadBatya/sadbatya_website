@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import style from "./Section.module.css";
+import { clsx } from "clsx";
 
 interface Props {
   children: ReactNode;
@@ -7,5 +8,5 @@ interface Props {
 }
 
 export const Section = ({ children, className }: Props) => (
-  <section className={`${style.section} ${className}`}>{children}</section>
+  <section className={clsx(style.section, className)}>{children}</section>
 );

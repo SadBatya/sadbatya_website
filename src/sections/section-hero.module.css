@@ -30,9 +30,3 @@
   align-items: center;
   gap: 8px;
 }
-
-.splitter {
-  height: 100%;
-  width: 1px;
-  background-color: var(--border-color);
-}

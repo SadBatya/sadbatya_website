@@ -6,11 +6,14 @@ import { Button } from "@mantine/core";
 export const Header = () => (
   <header className={style.header}>
     <Logo />
-    <NavLink to="/">Главная</NavLink>
-    <NavLink to="/about">Обо мне</NavLink>
-    <NavLink to="/contacts">Контакты</NavLink>
-    <NavLink to="/portfolio">Портфолио</NavLink>
-    <NavLink to="/blog">Блог</NavLink>
+    <div className={style.links}>
+      <NavLink to="/">Главная</NavLink>
+      <NavLink to="/about">Обо мне</NavLink>
+      <NavLink to="/contacts">Контакты</NavLink>
+      <NavLink to="/portfolio">Портфолио</NavLink>
+      <NavLink to="/blog">Блог</NavLink>
+      <NavLink to="/клавиатуры">Клавиатуры</NavLink>
+    </div>
     <Button variant="gradient">Связаться</Button>
   </header>
 );
