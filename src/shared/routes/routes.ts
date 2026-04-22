@@ -5,4 +5,5 @@ export const INTERNAL_ROUTES = {
 export const EXTERNAL_PATH = {
   github: "https://github.com/sadbatya",
   telegram: "https://t.me/sadbatya",
+  instagram: "https://www.instagram.com/sadbatya",
 };
