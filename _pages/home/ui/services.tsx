@@ -155,7 +155,6 @@ export function Services() {
   const {
     register,
     handleSubmit,
-    reset: resetForm,
     formState: { errors },
   } = useForm<LeadFormValues>({ resolver: zodResolver(leadSchema) });
 
