@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { Providers } from "@/_app/providers";
 import { Header } from "@/_app/layout/header";
+import { Footer } from "@/_app/layout/footer";
 import { ScrollProgress } from "@/_app/layout/scroll-progress";
+import { ScrollToTop } from "@/_app/layout/scroll-to-top";
+import { PromoToasts } from "@/_app/layout/promo-toasts";
 import "@/_app/styles/globals.css";
 
 const manrope = Manrope({
@@ -31,6 +34,9 @@ export default function RootLayout({
           <ScrollProgress />
           <Header />
           {children}
+          <Footer />
+          <ScrollToTop />
+          <PromoToasts />
         </Providers>
       </body>
     </html>
