@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Badge } from "@/shared/ui/badge";
 import { Button } from "@/shared/ui/button";
@@ -22,18 +21,18 @@ export function Header() {
   return (
     <header className="sticky top-0 z-[80] border-b border-border bg-background/75 backdrop-blur-xl">
       <div className="mx-auto flex h-[68px] max-w-[1240px] items-center gap-8 px-6">
-        <Link href="#top" className="flex flex-none items-center gap-2.5">
+        <a href="#top" className="flex flex-none items-center gap-2.5">
           <span className="grid size-[26px] place-items-center rounded-lg border border-primary/40 bg-primary/10 text-xs font-extrabold tracking-tight text-primary">
             S
           </span>
           <span className="text-[15px] font-bold tracking-[.14em] uppercase">
             Sadbatya
           </span>
-        </Link>
+        </a>
 
         <nav className="hidden flex-1 items-center gap-1 min-[941px]:flex">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               className={cn(
@@ -50,14 +49,14 @@ export function Header() {
                   Скоро
                 </Badge>
               )}
-            </Link>
+            </a>
           ))}
         </nav>
 
         <div className="ml-auto flex flex-none items-center gap-2.5">
           <ThemeToggle />
           <Button
-            render={<Link href="#contact" />}
+            render={<a href="#contact" />}
             nativeButton={false}
             className="hidden min-[941px]:inline-flex"
           >
@@ -100,7 +99,7 @@ export function Header() {
                     key={link.href}
                     nativeButton={false}
                     render={
-                      <Link
+                      <a
                         href={link.href}
                         className={cn(
                           "flex items-center gap-3 border-b border-border py-3.5 text-3xl font-bold tracking-tight",
@@ -130,7 +129,7 @@ export function Header() {
                     <Button
                       size="lg"
                       className="w-full"
-                      render={<Link href="#contact" />}
+                      render={<a href="#contact" />}
                       nativeButton={false}
                     />
                   }

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@/shared/ui/button";
 import { GithubIcon, TelegramIcon } from "@/shared/ui/icons";
 import { useTypewriter } from "@/shared/lib/use-typewriter";
@@ -55,7 +54,7 @@ export function Hero() {
           <Button
             size="lg"
             className="shadow-glow"
-            render={<Link href="#services" />}
+            render={<a href="#services" />}
             nativeButton={false}
           >
             Рассчитать стоимость
@@ -63,7 +62,7 @@ export function Hero() {
           <Button
             size="lg"
             variant="outline"
-            render={<Link href="#projects" />}
+            render={<a href="#projects" />}
             nativeButton={false}
           >
             Смотреть проекты
@@ -71,20 +70,22 @@ export function Hero() {
         </div>
 
         <div className="mt-2 flex gap-2.5">
-          <Link
+          <a
             href={externalLinks.github}
             target="_blank"
+            rel="noopener noreferrer"
             className="grid size-11 place-items-center rounded-xl border border-border bg-card text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-border-strong hover:text-foreground"
           >
             <GithubIcon className="size-[19px]" />
-          </Link>
-          <Link
+          </a>
+          <a
             href={externalLinks.telegram}
             target="_blank"
+            rel="noopener noreferrer"
             className="grid size-11 place-items-center rounded-xl border border-border bg-card text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-border-strong hover:text-foreground"
           >
             <TelegramIcon className="size-[19px]" />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

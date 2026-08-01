@@ -1,7 +1,7 @@
 import { Hero } from "./hero";
+import { About } from "./about";
 
 const placeholderSections = [
-  { id: "about", label: "Обо мне" },
   { id: "projects", label: "Проекты" },
   { id: "services", label: "Менторинг / услуги" },
   { id: "posts", label: "Посты" },
@@ -12,6 +12,7 @@ export function HomePage() {
   return (
     <main id="top" className="flex flex-1 flex-col">
       <Hero />
+      <About />
 
       {placeholderSections.map((s) => (
         <section
